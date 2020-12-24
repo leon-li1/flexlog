@@ -13,7 +13,7 @@ const Container = styled.div`
   flex: 1;
   display: flex;
   align-self: flex-end;
-  padding: 0.5em;
+  padding: 0.2em;
 `;
 
 const Text = styled.a`

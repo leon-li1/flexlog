@@ -1,15 +1,15 @@
 import styled from "styled-components";
 import Header from "../components/Header/index";
-import LoginModal from "../components/LoginModal/index";
+import ResetPasswordModal from "../components/ResetPasswordModal/index";
 
-export default function Home() {
-  const errorMsg = "Incorrect email or password";
+export default function ResetPassword() {
+  const errorMsg = "Invalid email";
   return (
     <PageContainer>
       <Header />
       <MainContainer>
         <Title>You don't improve what you don't track...</Title>
-        <LoginModal />
+        <ResetPasswordModal />
         <Quote>
           “Today I will do what others won’t, so tomorrow I can accomplish what
           others can’t.” —Jerry Rice

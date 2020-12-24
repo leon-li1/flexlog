@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const MyButton = styled.button`
+export const Button = styled.button`
   display: block;
   font-size: 1em;
   background-color: white;
@@ -16,4 +16,4 @@ const MyButton = styled.button`
   }
 `;
 
-export default MyButton;
+// export default Button;

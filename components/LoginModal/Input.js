@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Input = styled.input`
+export const Input = styled.input`
   display: block;
   background-color: ${(p) => p.theme.colors.background3};
   width: 100%;
@@ -20,4 +20,4 @@ const Input = styled.input`
   }
 `;
 
-export default Input;
+// export default Input;
