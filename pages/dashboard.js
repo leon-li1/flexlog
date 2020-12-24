@@ -4,6 +4,7 @@ import WelcomeCard from "../components/DashboardCards/Welcome";
 import PointsCard from "../components/DashboardCards/Points";
 import GraphCard from "../components/DashboardCards/Graph";
 import QuoteCard from "../components/DashboardCards/Quote";
+import Options from "../components/DashboardOptions/index";
 
 export default function Dashboard() {
   const errorMsg = "Incorrect email or password";
@@ -14,6 +15,7 @@ export default function Dashboard() {
         <Container>
           <WelcomeCard />
           <PointsCard />
+          <Options />
         </Container>
         <Container>
           <GraphCard />
@@ -41,12 +43,4 @@ const MainContainer = styled.main`
   flex-direction: column;
   align-items: center;
   margin: 3em 0;
-`;
-
-const Title = styled.h2`
-  font-size: 2.3em;
-`;
-
-const Quote = styled.p`
-  padding: 0.6em 0;
 `;
