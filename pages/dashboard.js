@@ -18,8 +18,8 @@ export default function Dashboard() {
           <Options />
         </Container>
         <Container>
-          <GraphCard />
           <QuoteCard />
+          <GraphCard />
         </Container>
       </MainContainer>
     </PageContainer>
@@ -28,6 +28,10 @@ export default function Dashboard() {
 
 const Container = styled.div`
   display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 100%;
+  padding: 0 2em;
 `;
 
 const PageContainer = styled.div`
@@ -42,5 +46,5 @@ const MainContainer = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 3em 0;
+  margin: 0em 0;
 `;

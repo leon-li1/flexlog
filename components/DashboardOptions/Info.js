@@ -10,23 +10,23 @@ const Info = ({ className }) => (
     <path
       d="M23.5 45C35.3741 45 45 35.3741 45 23.5C45 11.6259 35.3741 2 23.5 2C11.6259 2 2 11.6259 2 23.5C2 35.3741 11.6259 45 23.5 45Z"
       stroke="white"
-      stroke-width="3"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="3"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
     <path
       d="M23.5 32.1V23.5"
       stroke="white"
-      stroke-width="3"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="3"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
     <path
       d="M23.5 14.9H23.5215"
       stroke="white"
-      stroke-width="3"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="3"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
   </svg>
 );

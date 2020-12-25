@@ -36,6 +36,7 @@ const Option = styled.div`
   display: flex;
   align-items: center;
   padding: 0.3em 0em 0.3em 1.2em;
+  cursor: pointer;
 `;
 
 const Text = styled.p`
