@@ -3,6 +3,7 @@ import ForgotPassword from "./ForgotPassword";
 import { Button } from "./Button";
 import { Input } from "./Input";
 import { Modal, ModalTitle } from "./Modal";
+import Link from "next/link";
 
 export default function LoginModal() {
   return (
@@ -11,8 +12,14 @@ export default function LoginModal() {
       <Input type="email" placeholder="Email..." />
       <Input type="password" placeholder="Password..." />
       <ForgotPassword>Forgot password?</ForgotPassword>
-      <Button onClick={() => alert("hi")}>Log in</Button>
-      <Button>Create a new account</Button>
+
+      <Link href="/dashboard">
+        <Button onClick={() => console.log("hi")}>Log in</Button>
+      </Link>
+
+      <Link href="/createAccount">
+        <Button>Create a new account</Button>
+      </Link>
     </Modal>
   );
 }

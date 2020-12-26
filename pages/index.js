@@ -1,9 +1,10 @@
 import styled from "styled-components";
 import Header from "../components/Header/index";
 import LoginModal from "../components/LoginModal/index";
+import { useState } from "react";
 
 export default function Home() {
-  const errorMsg = "Incorrect email or password";
+  const [errorMsg, setErrorMsg] = useState(false);
   return (
     <PageContainer>
       <Header />
@@ -22,8 +23,9 @@ export default function Home() {
           “We are what we repeatedly do. Excellence then is not an act but a
           habit.” —Aristotle
         </Quote>
-        <ErrorContainer hidden={errorMsg ? false : true}>
-          {errorMsg}
+        <button onClick={() => setErrorMsg(!errorMsg)}>toggle</button>
+        <ErrorContainer isVisible={errorMsg}>
+          Incorrect email or password
         </ErrorContainer>
       </MainContainer>
     </PageContainer>
@@ -31,6 +33,9 @@ export default function Home() {
 }
 
 const ErrorContainer = styled.div`
+  position: fixed;
+  bottom: ${(p) => (p.isVisible ? -100 : 100)}px;
+  transition: bottom ease-in-out 0.25s;
   background-color: #d24f4f;
   border-radius: 100px;
   padding: 0.5em 1em;

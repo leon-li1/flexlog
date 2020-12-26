@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useState } from "react";
 import Star from "./Star";
-import SVGThing from "./SVGThing";
+import DateLine from "./DateLine";
 
 export default function WelcomeCard() {
   const [name, setName] = useState("Leon");
@@ -53,9 +53,9 @@ const NameLabel = styled.p`
   line-height: 1;
 `;
 
-const StyledSVG = styled(SVGThing)`
+const StyledSVG = styled(DateLine)`
   position: absolute;
-  bottom: 3.5em;
+  bottom: 0em;
   left: 0;
   width: 100%;
   display: block;

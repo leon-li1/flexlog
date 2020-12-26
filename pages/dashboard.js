@@ -18,10 +18,11 @@ export default function Dashboard() {
           <Options />
         </Container>
         <Container>
-          <QuoteCard />
           <GraphCard />
+          <QuoteCard />
         </Container>
       </MainContainer>
+      <SettingsContainer>Heyyy</SettingsContainer>
     </PageContainer>
   );
 }
@@ -37,6 +38,18 @@ const Container = styled.div`
 const PageContainer = styled.div`
   background: ${({ theme }) => theme.colors.background1};
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+`;
+
+const SettingsContainer = styled.div`
+  background: ${({ theme }) => theme.colors.background1};
+  z-index: 100;
+  /* position: absolute; */
+  /* vertical-align: middle; */
+  /* align-self: center; */
+  /* justify-self: center; */
+  margin: auto;
   display: flex;
   flex-direction: column;
 `;
