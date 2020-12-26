@@ -1,11 +1,10 @@
-import styled from "styled-components";
 import ForgotPassword from "./ForgotPassword";
 import { Button } from "./Button";
 import { Input } from "./Input";
 import { Modal, ModalTitle } from "./Modal";
 import Link from "next/link";
 
-export default function LoginModal() {
+export default function LoginModal({ props }) {
   return (
     <Modal>
       <ModalTitle>Login to my Flexlog</ModalTitle>
@@ -16,10 +15,13 @@ export default function LoginModal() {
       <Link href="/dashboard">
         <Button onClick={() => console.log("hi")}>Log in</Button>
       </Link>
-
-      <Link href="/createAccount">
-        <Button>Create a new account</Button>
-      </Link>
+      <Button
+        onClick={() => {
+          props("CreateAccount");
+        }}
+      >
+        Create a new account
+      </Button>
     </Modal>
   );
 }

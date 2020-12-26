@@ -14,8 +14,11 @@ const CreateAccountModal = () => {
   });
 
   const signUp = async () => {
-    await axios.post("http://localhost:8000/api/users/add", text);
-    alert(text);
+    try {
+      const res = await axios.post("http://localhost:8000/api/users/add", text);
+    } catch (err) {
+      alert(err);
+    }
   };
 
   const handleChange = (event) => {
@@ -49,7 +52,7 @@ const CreateAccountModal = () => {
         placeholder="Confirm password..."
         onChange={handleChange}
       />
-      <Button onClick={() => signUp()}>Sign Up</Button>
+      <Button onClick={async () => await signUp()}>Sign Up</Button>
     </Modal>
   );
 };

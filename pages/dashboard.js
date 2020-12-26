@@ -5,6 +5,7 @@ import PointsCard from "../components/DashboardCards/Points";
 import GraphCard from "../components/DashboardCards/Graph";
 import QuoteCard from "../components/DashboardCards/Quote";
 import Options from "../components/DashboardOptions/index";
+import SettingsPopup from "../components/SettingsPopup/index";
 
 export default function Dashboard() {
   const errorMsg = "Incorrect email or password";
@@ -22,7 +23,7 @@ export default function Dashboard() {
           <QuoteCard />
         </Container>
       </MainContainer>
-      <SettingsContainer>Heyyy</SettingsContainer>
+      <SettingsPopup />
     </PageContainer>
   );
 }
@@ -38,18 +39,6 @@ const Container = styled.div`
 const PageContainer = styled.div`
   background: ${({ theme }) => theme.colors.background1};
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-`;
-
-const SettingsContainer = styled.div`
-  background: ${({ theme }) => theme.colors.background1};
-  z-index: 100;
-  /* position: absolute; */
-  /* vertical-align: middle; */
-  /* align-self: center; */
-  /* justify-self: center; */
-  margin: auto;
   display: flex;
   flex-direction: column;
 `;

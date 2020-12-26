@@ -1,28 +1,31 @@
 import styled from "styled-components";
 import Header from "../components/Header/index";
 import LoginModal from "../components/LoginModal/index";
+import CreateAccountModal from "../components/CreateAccountModal/index";
+import ResetPasswordModal from "../components/ResetPasswordModal/index";
+import Quotes from "../components/Quotes/index";
 import { useState } from "react";
 
 export default function Home() {
   const [errorMsg, setErrorMsg] = useState(false);
+  const [state, setState] = useState("Login");
+
   return (
     <PageContainer>
       <Header />
       <MainContainer>
         <Title>You don't improve what you don't track...</Title>
-        <LoginModal />
-        <Quote>
-          “Today I will do what others won’t, so tomorrow I can accomplish what
-          others can’t.” —Jerry Rice
-        </Quote>
-        <Quote>
-          “Do something today that your future self will thank you for.”
-          —Unknown
-        </Quote>
-        <Quote>
-          “We are what we repeatedly do. Excellence then is not an act but a
-          habit.” —Aristotle
-        </Quote>
+        {(() => {
+          switch (state) {
+            case "Login":
+              return <LoginModal props={setState} />;
+            case "CreateAccount":
+              return <CreateAccountModal />;
+            case "Code":
+              return <ResetPasswordModal />;
+          }
+        })()}
+        <Quotes />
         <button onClick={() => setErrorMsg(!errorMsg)}>toggle</button>
         <ErrorContainer isVisible={errorMsg}>
           Incorrect email or password
@@ -58,8 +61,4 @@ const MainContainer = styled.main`
 
 const Title = styled.h2`
   font-size: 2.3em;
-`;
-
-const Quote = styled.p`
-  padding: 0.6em 0;
 `;
