@@ -17,7 +17,7 @@ const CreateAccountModal = () => {
     try {
       const res = await axios.post("http://localhost:8000/api/users/add", text);
     } catch (err) {
-      alert(err);
+      alert(err.response.data);
     }
   };
 

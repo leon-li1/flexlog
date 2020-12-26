@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { ModalTitle } from "../LoginModal/Modal";
 import { useState } from "react";
+import UnitsSwitch from "./UnitsSwitch";
+
 import axios from "axios";
 
 const SettingsPopup = () => {
@@ -25,9 +27,10 @@ const SettingsPopup = () => {
     <Modal>
       <ModalTitle>Settings</ModalTitle>
       <FieldContainer>
-        <label>Change name</label>
+        <label for="name">Change name</label>
         <Input
           name="name"
+          id="name"
           type="text"
           placeholder="Name..."
           onChange={handleChange}
@@ -44,7 +47,7 @@ const SettingsPopup = () => {
         />
       </FieldContainer>
       <FieldContainer>
-        <label for="name">Change password</label>
+        <label for="password">Change password</label>
         <Input
           name="password"
           id="password"
@@ -54,7 +57,7 @@ const SettingsPopup = () => {
         />
       </FieldContainer>
       <FieldContainer>
-        <label for="name">Confirm password</label>
+        <label for="passwordConfirm">Confirm password</label>
         <Input
           name="passwordConfirm"
           id="passwordConfirm"
@@ -64,19 +67,7 @@ const SettingsPopup = () => {
         />
       </FieldContainer>
       <FieldContainer>
-        <label>Change units</label>
-        <select
-          style={{ color: "black" }}
-          value={text.units}
-          onChange={handleChange}
-          name="units"
-          id="units"
-        >
-          <option value="metric" selected="selected">
-            Metric (kg)
-          </option>
-          <option value="imperial">Imperial (lb)</option>
-        </select>
+        <UnitsSwitch />
       </FieldContainer>
       <BtnContainer>
         <Button onClick={() => console.log("cancel")}>Cancel</Button>
@@ -91,11 +82,7 @@ const Modal = styled.div`
   display: flex;
   position: absolute;
   flex-direction: column;
-  /* align-items: center; */
-  /* margin-left: auto; */
-  /* margin-right: auto; */
   padding: 1.5em 2em;
-  /* margin: 2em 0; */
   left: 20%;
   top: 25%;
   border-radius: 36px;
@@ -106,6 +93,7 @@ const Modal = styled.div`
 const FieldContainer = styled.div`
   display: flex;
   align-items: center;
+  margin: 0.5em 0em;
 `;
 
 const BtnContainer = styled.div`
@@ -143,6 +131,7 @@ const Button = styled.button`
   padding: 0.2em 0.8em;
   margin: 0.3em 0.3em;
   cursor: pointer;
+  font-weight: 600;
 
   :focus {
     outline: none;
