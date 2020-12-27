@@ -5,7 +5,7 @@ import UnitsSwitch from "./UnitsSwitch";
 
 import axios from "axios";
 
-const SettingsPopup = () => {
+const SettingsPopup = ({ set }) => {
   const [text, setText] = useState({
     name: "",
     email: "",
@@ -70,7 +70,7 @@ const SettingsPopup = () => {
         <UnitsSwitch />
       </FieldContainer>
       <BtnContainer>
-        <Button onClick={() => console.log("cancel")}>Cancel</Button>
+        <Button onClick={() => set("")}>Cancel</Button>
         <Button onClick={() => confirmChanges()}>Confirm changes</Button>
       </BtnContainer>
     </Modal>

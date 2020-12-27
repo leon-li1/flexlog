@@ -2,6 +2,19 @@ import styled from "styled-components";
 import Logo from "./Logo";
 import LogoutIcon from "./LogoutIcon";
 
+export default function Header() {
+  return (
+    <NavBar>
+      <LogoText>FLEXLOG</LogoText>
+      <Logo />
+      <LogoutContainer>
+        <LogoutIcon />
+        <LogoutText>Log out</LogoutText>
+      </LogoutContainer>
+    </NavBar>
+  );
+}
+
 const NavBar = styled.div`
   display: flex;
   width: 100%;
@@ -26,17 +39,5 @@ const LogoutContainer = styled.div`
 
 const LogoutText = styled.p`
   font-size: 1em;
+  margin: 0.2em;
 `;
-
-export default function Header() {
-  return (
-    <NavBar>
-      <LogoText>FLEXLOG</LogoText>
-      <Logo />
-      <LogoutContainer>
-        <LogoutIcon />
-        <LogoutText>Log out</LogoutText>
-      </LogoutContainer>
-    </NavBar>
-  );
-}

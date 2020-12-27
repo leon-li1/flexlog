@@ -28,6 +28,24 @@ const GlobalStyle = createGlobalStyle`
     font-weight: 300;
   }
 
+  ::-webkit-scrollbar {
+  width: 8px;
+  background-color: white;
+  border-radius: 100px;
+  -webkit-border-radius: 100px;
+}
+
+/* ::-webkit-scrollbar-thumb:vertical {
+  background: rgba(0, 0, 0, 0.5);
+  -webkit-border-radius: 100px;
+  border-radius: 100px;
+}
+::-webkit-scrollbar-thumb:vertical:active {
+  background: rgba(0, 0, 0, 0.61);
+  -webkit-border-radius: 100px;
+  border-radius: 100px;
+} */
+
 `;
 
 const theme = {

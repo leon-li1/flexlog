@@ -1,5 +1,6 @@
-const Gear = ({ className }) => (
+const Gear = ({ className, set }) => (
   <svg
+    onClick={() => set("Settings")}
     className={className}
     width="47"
     height="47"

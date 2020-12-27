@@ -6,9 +6,13 @@ import GraphCard from "../components/DashboardCards/Graph";
 import QuoteCard from "../components/DashboardCards/Quote";
 import Options from "../components/DashboardOptions/index";
 import SettingsPopup from "../components/SettingsPopup/index";
+import InfoPopup from "../components/InfoPopup/index";
+
+import { useState } from "react";
 
 export default function Dashboard() {
-  const errorMsg = "Incorrect email or password";
+  const [state, setState] = useState("");
+
   return (
     <PageContainer>
       <Header />
@@ -16,14 +20,21 @@ export default function Dashboard() {
         <Container>
           <WelcomeCard />
           <PointsCard />
-          <Options />
+          <Options set={setState} />
         </Container>
         <Container>
           <GraphCard />
           <QuoteCard />
         </Container>
       </MainContainer>
-      <SettingsPopup />
+      {(() => {
+        switch (state) {
+          case "Settings":
+            return <SettingsPopup set={setState} />;
+          case "Info":
+            return <InfoPopup set={setState} />;
+        }
+      })()}
     </PageContainer>
   );
 }

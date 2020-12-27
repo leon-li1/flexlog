@@ -1,5 +1,6 @@
-const Info = ({ className }) => (
+const Info = ({ className, set }) => (
   <svg
+    onClick={() => set("Info")}
     className={className}
     width="47"
     height="47"
