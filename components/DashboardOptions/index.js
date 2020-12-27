@@ -16,9 +16,9 @@ export default function Options({ set }) {
       </Option>
       <Option>
         <StatsIcon />
-        <Link href="/logs">
-          <Text>My Stats</Text>
-        </Link>
+        {/* <Link href="/stats"> */}
+        <Text>My Stats</Text>
+        {/* </Link> */}
       </Option>
       <Option>
         <Gear set={set} />

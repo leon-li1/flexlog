@@ -1,8 +1,8 @@
 const DimmedGraph = ({ className }) => (
   <svg
     className={className}
-    width="460"
-    height="173"
+    width="620"
+    height="393"
     viewBox="0 0 460 173"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"

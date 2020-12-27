@@ -3,81 +3,70 @@ import { useState } from "react";
 import ThreeDots from "./ThreeDots";
 import ExerciseInfo from "./ExcersiseInfo";
 
-export default function WelcomeCard() {
-  const [workout, setWorkout] = useState({
-    name: "Back and Biceps",
-    exercises: [
-      {
-        name: "Hammer curls",
-        sets: 3,
-        weights: [30, 40, 50],
-        reps: [10, 8, 6],
-      },
-      {
-        name: "Lat pulldown",
-        sets: 3,
-        weights: [120, 150, 180],
-        reps: [10, 8, 6],
-      },
-      {
-        name: "Bent over rows",
-        sets: 3,
-        weights: [80, 90, 100],
-        reps: [10, 8, 6],
-      },
-      {
-        name: "Hammer curls",
-        sets: 3,
-        weights: [30, 40, 50],
-        reps: [10, 8, 6],
-      },
-      {
-        name: "Lat pulldown",
-        sets: 3,
-        weights: [120, 150, 180],
-        reps: [10, 8, 6],
-      },
-      {
-        name: "Bent over rows",
-        sets: 3,
-        weights: [80, 90, 100],
-        reps: [10, 8, 6],
-      },
-      {
-        name: "Hammer curls",
-        sets: 3,
-        weights: [30, 40, 50],
-        reps: [10, 8, 6],
-      },
-      {
-        name: "Lat pulldown",
-        sets: 3,
-        weights: [120, 150, 180],
-        reps: [10, 8, 6],
-      },
-      {
-        name: "Bent over rows",
-        sets: 3,
-        weights: [80, 90, 100],
-        reps: [10, 8, 6],
-      },
-    ],
-  });
+export default function Workoutcard({ name, exercises }) {
+  // const [workout, setWorkout] = useState({
+  //   name: "Back and Biceps",
+  //   exercises: [
+  //     {
+  //       name: "Hammer curls",
+  //       weights: [30, 40, 50],
+  //       reps: [10, 8, 6],
+  //     },
+  //     {
+  //       name: "Lat pulldown",
+  //       weights: [120, 150, 180],
+  //       reps: [10, 8, 6],
+  //     },
+  //     {
+  //       name: "Bent over rows",
+  //       weights: [80, 90, 100],
+  //       reps: [10, 8, 6],
+  //     },
+  //     {
+  //       name: "Hammer curls",
+  //       weights: [30, 40, 50],
+  //       reps: [10, 8, 6],
+  //     },
+  //     {
+  //       name: "Lat pulldown",
+  //       weights: [120, 150, 180],
+  //       reps: [10, 8, 6],
+  //     },
+  //     {
+  //       name: "Bent over rows",
+  //       weights: [80, 90, 100],
+  //       reps: [10, 8, 6],
+  //     },
+  //     {
+  //       name: "Hammer curls",
+  //       weights: [30, 40, 50],
+  //       reps: [10, 8, 6],
+  //     },
+  //     {
+  //       name: "Lat pulldown",
+  //       weights: [120, 150, 180],
+  //       reps: [10, 8, 6],
+  //     },
+  //     {
+  //       name: "Bent over rows",
+  //       weights: [80, 90, 100],
+  //       reps: [10, 8, 6],
+  //     },
+  //   ],
+  // });
 
   const zip = (a, b) => a.map((aVal, i) => [aVal, b[i]]);
 
   return (
     <Card>
       <MyContainer2>
-        <NameLabel>{workout.name}</NameLabel>
+        <NameLabel>{name}</NameLabel>
         <StyledThreeDots />
       </MyContainer2>
       <MyContainer>
-        {workout.exercises.map((ex) => {
-          return (
-            <ExerciseInfo name={ex.name} sets={zip(ex.weights, ex.reps)} />
-          );
-        })}
+        {exercises.map((ex) => (
+          <ExerciseInfo name={ex.name} sets={zip(ex.weights, ex.reps)} />
+        ))}
       </MyContainer>
     </Card>
   );
