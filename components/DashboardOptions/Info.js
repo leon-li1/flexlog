@@ -1,31 +1,27 @@
 const Info = ({ className, set }) => (
   <svg
-    onClick={() => set("Info")}
     className={className}
-    width="47"
-    height="47"
-    viewBox="0 0 47 47"
+    width="52"
+    height="52"
+    viewBox="0 0 52 52"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
-      d="M23.5 45C35.3741 45 45 35.3741 45 23.5C45 11.6259 35.3741 2 23.5 2C11.6259 2 2 11.6259 2 23.5C2 35.3741 11.6259 45 23.5 45Z"
-      stroke="white"
-      strokeWidth="3"
+      d="M25.5 47C37.3741 47 47 37.3741 47 25.5C47 13.6259 37.3741 4 25.5 4C13.6259 4 4 13.6259 4 25.5C4 37.3741 13.6259 47 25.5 47Z"
+      fill="white"
+    />
+    <path
+      d="M25.5 34.1V25.5"
+      stroke="#00254F"
+      strokeWidth="6"
       strokeLinecap="round"
       strokeLinejoin="round"
     />
     <path
-      d="M23.5 32.1V23.5"
-      stroke="white"
-      strokeWidth="3"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-    <path
-      d="M23.5 14.9H23.5215"
-      stroke="white"
-      strokeWidth="3"
+      d="M25.5 16.9H25.5215"
+      stroke="#00254F"
+      strokeWidth="6"
       strokeLinecap="round"
       strokeLinejoin="round"
     />

@@ -5,8 +5,8 @@ export default function ExerciseInfo({ name, sets }) {
     <>
       <ExerciseContainer>
         <p>{name}</p>
-        {sets.map((set) => (
-          <p>{`${set[0]} x ${set[1]}`}</p>
+        {sets.map((set, idx) => (
+          <p key={idx}>{`${set[0]} x ${set[1]}`}</p>
         ))}
       </ExerciseContainer>
     </>

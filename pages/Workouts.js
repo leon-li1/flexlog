@@ -2,200 +2,21 @@ import styled from "styled-components";
 import Header from "../components/Header/index";
 import WorkoutCard from "../components/WorkoutCard/index";
 import WorkoutOptions from "../components/WorkoutOptions/index";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function Dashboard() {
-  const errorMsg = "Incorrect email or password";
-  const state = [
-    {
-      exercises: [
-        {
-          weights: [30, 40],
-          reps: [12, 10],
-          scores: [360, 400],
-          name: "Curls",
-          sets: 2,
-        },
-        {
-          weights: [40, 45],
-          reps: [8, 6],
-          scores: [320, 270],
-          name: "bench",
-          sets: 2,
-        },
-      ],
-      name: "PPLj",
-      numExercises: 2,
-    },
-    {
-      exercises: [
-        {
-          weights: [30, 40],
-          reps: [12, 10],
-          scores: [360, 400],
-          name: "Curls",
-          sets: 2,
-        },
-        {
-          weights: [40, 45],
-          reps: [8, 6],
-          scores: [320, 270],
-          name: "bench",
-          sets: 2,
-        },
-      ],
-      name: "PPfLj",
-      numExercises: 2,
-    },
-    {
-      exercises: [
-        {
-          weights: [30, 40],
-          reps: [12, 10],
-          scores: [360, 400],
-          name: "Curls",
-          sets: 2,
-          __v: 0,
-        },
-        {
-          weights: [40, 45],
-          reps: [8, 6],
-          scores: [320, 270],
-          name: "bench",
-          sets: 2,
-          pr: 320,
-          __v: 0,
-        },
-      ],
-      name: "PPLj",
-      numExercises: 2,
-    },
-    {
-      exercises: [
-        {
-          weights: [30, 40],
-          reps: [12, 10],
-          scores: [360, 400],
-          name: "Curls",
-          sets: 2,
-        },
-        {
-          weights: [40, 45],
-          reps: [8, 6],
-          scores: [320, 270],
-          name: "bench",
-          sets: 2,
-        },
-      ],
-      name: "PPLj",
-      numExercises: 2,
-    },
-    {
-      exercises: [
-        {
-          weights: [30, 40],
-          reps: [12, 10],
-          scores: [360, 400],
-          name: "Curls",
-          sets: 2,
-        },
-        {
-          weights: [40, 45],
-          reps: [8, 6],
-          scores: [320, 270],
-          name: "bench",
-          sets: 2,
-        },
-      ],
-      name: "PPfLj",
-      numExercises: 2,
-    },
-    {
-      exercises: [
-        {
-          weights: [30, 40],
-          reps: [12, 10],
-          scores: [360, 400],
-          name: "Curls",
-          sets: 2,
-          __v: 0,
-        },
-        {
-          weights: [40, 45],
-          reps: [8, 6],
-          scores: [320, 270],
-          name: "bench",
-          sets: 2,
-          pr: 320,
-          __v: 0,
-        },
-      ],
-      name: "PPLj",
-      numExercises: 2,
-    },
-    {
-      exercises: [
-        {
-          weights: [30, 40],
-          reps: [12, 10],
-          scores: [360, 400],
-          name: "Curls",
-          sets: 2,
-        },
-        {
-          weights: [40, 45],
-          reps: [8, 6],
-          scores: [320, 270],
-          name: "bench",
-          sets: 2,
-        },
-      ],
-      name: "PPLj",
-      numExercises: 2,
-    },
-    {
-      exercises: [
-        {
-          weights: [30, 40],
-          reps: [12, 10],
-          scores: [360, 400],
-          name: "Curls",
-          sets: 2,
-        },
-        {
-          weights: [40, 45],
-          reps: [8, 6],
-          scores: [320, 270],
-          name: "bench",
-          sets: 2,
-        },
-      ],
-      name: "PPfLj",
-      numExercises: 2,
-    },
-    {
-      exercises: [
-        {
-          weights: [30, 40],
-          reps: [12, 10],
-          scores: [360, 400],
-          name: "Curls",
-          sets: 2,
-          __v: 0,
-        },
-        {
-          weights: [40, 45],
-          reps: [8, 6],
-          scores: [320, 270],
-          name: "bench",
-          sets: 2,
-          pr: 320,
-          __v: 0,
-        },
-      ],
-      name: "PPLj",
-      numExercises: 2,
-    },
-  ];
+  const [workouts, setWorkouts] = useState([]);
+
+  useEffect(() => {
+    const getWorkouts = async () => {
+      const res = await axios.get("http://localhost:8000/workouts/all", {
+        withCredentials: true,
+      });
+      setWorkouts(res.data);
+    };
+    getWorkouts();
+  }, []);
 
   return (
     <PageContainer>
@@ -209,24 +30,30 @@ export default function Dashboard() {
           <WorkoutOptions />
         </Container>
 
-        {state.map((workout, idx) => {
+        {workouts.map((workout, idx) => {
           if (idx % 2 == 1) return;
-          else if (idx + 1 < state.length)
+          else if (idx + 1 < workouts.length)
             return (
-              <Container2>
+              <Container2 key={idx}>
                 <WorkoutCard
+                  key={workout._id}
                   name={workout.name}
                   exercises={workout.exercises}
                 />
                 <WorkoutCard
-                  name={state[idx + 1].name}
-                  exercises={state[idx + 1].exercises}
+                  key={workouts[idx + 1]._id}
+                  name={workouts[idx + 1].name}
+                  exercises={workouts[idx + 1].exercises}
                 />
               </Container2>
             );
           return (
-            <Container2>
-              <WorkoutCard name={workout.name} exercises={workout.exercises} />
+            <Container2 key={idx}>
+              <WorkoutCard
+                key={workout._id}
+                name={workout.name}
+                exercises={workout.exercises}
+              />
             </Container2>
           );
         })}

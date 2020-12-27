@@ -1,32 +1,32 @@
 const StatsIcon = ({ className }) => (
   <svg
     className={className}
-    width="46"
-    height="46"
-    viewBox="0 0 28 36"
+    width="52"
+    height="52"
+    viewBox="0 0 52 52"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
-      d="M14 34V14"
+      d="M24 41V21"
       stroke="white"
-      stroke-width="4"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
     <path
-      d="M26 34V2"
+      d="M36 41V9"
       stroke="white"
-      stroke-width="4"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
     <path
-      d="M2 34V26"
+      d="M12 41V33"
       stroke="white"
-      stroke-width="4"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
   </svg>
 );

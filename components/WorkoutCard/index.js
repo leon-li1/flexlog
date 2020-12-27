@@ -1,60 +1,8 @@
 import styled from "styled-components";
-import { useState } from "react";
 import ThreeDots from "./ThreeDots";
 import ExerciseInfo from "./ExcersiseInfo";
 
 export default function Workoutcard({ name, exercises }) {
-  // const [workout, setWorkout] = useState({
-  //   name: "Back and Biceps",
-  //   exercises: [
-  //     {
-  //       name: "Hammer curls",
-  //       weights: [30, 40, 50],
-  //       reps: [10, 8, 6],
-  //     },
-  //     {
-  //       name: "Lat pulldown",
-  //       weights: [120, 150, 180],
-  //       reps: [10, 8, 6],
-  //     },
-  //     {
-  //       name: "Bent over rows",
-  //       weights: [80, 90, 100],
-  //       reps: [10, 8, 6],
-  //     },
-  //     {
-  //       name: "Hammer curls",
-  //       weights: [30, 40, 50],
-  //       reps: [10, 8, 6],
-  //     },
-  //     {
-  //       name: "Lat pulldown",
-  //       weights: [120, 150, 180],
-  //       reps: [10, 8, 6],
-  //     },
-  //     {
-  //       name: "Bent over rows",
-  //       weights: [80, 90, 100],
-  //       reps: [10, 8, 6],
-  //     },
-  //     {
-  //       name: "Hammer curls",
-  //       weights: [30, 40, 50],
-  //       reps: [10, 8, 6],
-  //     },
-  //     {
-  //       name: "Lat pulldown",
-  //       weights: [120, 150, 180],
-  //       reps: [10, 8, 6],
-  //     },
-  //     {
-  //       name: "Bent over rows",
-  //       weights: [80, 90, 100],
-  //       reps: [10, 8, 6],
-  //     },
-  //   ],
-  // });
-
   const zip = (a, b) => a.map((aVal, i) => [aVal, b[i]]);
 
   return (
@@ -64,8 +12,12 @@ export default function Workoutcard({ name, exercises }) {
         <StyledThreeDots />
       </MyContainer2>
       <MyContainer>
-        {exercises.map((ex) => (
-          <ExerciseInfo name={ex.name} sets={zip(ex.weights, ex.reps)} />
+        {exercises.map((ex, idx) => (
+          <ExerciseInfo
+            key={idx}
+            name={ex.name}
+            sets={zip(ex.weights, ex.reps)}
+          />
         ))}
       </MyContainer>
     </Card>
@@ -73,8 +25,8 @@ export default function Workoutcard({ name, exercises }) {
 }
 
 const Card = styled.div`
-  width: 50vw;
-  height: 50vh;
+  width: 45vw;
+  max-height: 50vh;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -96,7 +48,6 @@ const MyContainer = styled.div`
   margin: 0em -1em;
   padding: 0em 1em;
   overflow-y: scroll;
-  height: 100%;
 `;
 
 const MyContainer2 = styled.div`
