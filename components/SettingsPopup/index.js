@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { ModalTitle } from "../LoginModal/Modal";
 import { useState } from "react";
 import UnitsSwitch from "./UnitsSwitch";
-import { Input } from '../LoginModal/Input';
 
 import axios from "axios";
 
@@ -101,6 +100,25 @@ const BtnContainer = styled.div`
   display: flex;
   margin-left: auto;
 `;
+
+const Input = styled.input`	
+  display: block;	
+  background-color: ${(p) => p.theme.colors.background3};	
+  width: 70%;	
+  border-radius: 17px;	
+  font-size: 1em;	
+  margin: 0.5em;	
+  margin-left: auto;	
+  padding: 0.3em 0.8em;	
+  color: white;	
+  border: none;	
+  ::placeholder {	
+    color: white;	
+  }	
+  :focus {	
+    outline: none;	
+  }	
+`;	
 
 const Button = styled.button`
   display: block;
