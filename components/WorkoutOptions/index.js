@@ -2,11 +2,16 @@ import styled from "styled-components";
 import ShareIcon from "./ShareIcon";
 import Plus from "./Plus";
 import HomeIcon from "./HomeIcon";
+import UpsertWorkoutModal from "../UpsertWorkoutModal";
+import { useState } from 'react';
 
 export default function Options({ set }) {
+  const [addVisible, setAddVisible] = useState(false);
+
   return (
     <OptionContainer>
-      <Option>
+      <UpsertWorkoutModal isVisible={addVisible} setVisible={setAddVisible}/>
+      <Option onClick={() => setAddVisible(true)}>
         <Plus />
         <Text>Add new workouts</Text>
       </Option>
@@ -25,7 +30,7 @@ const OptionContainer = styled.div`
   margin-left: 0em;
 `;
 
-const Option = styled.div`
+const Option = styled.button`
   display: flex;
   align-items: center;
   padding: 0.3em 0em 0.3em 1.2em;
