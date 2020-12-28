@@ -5,7 +5,7 @@ import UnitsSwitch from "./UnitsSwitch";
 
 import axios from "axios";
 
-const SettingsPopup = ({ set, user }) => {
+const SettingsPopup = ({ set, user, setUser }) => {
   const inputName = useRef();
   const inputEmail = useRef();
   const inputPassword = useRef();
@@ -30,6 +30,7 @@ const SettingsPopup = ({ set, user }) => {
       text,
       { withCredentials: true }
     );
+    setUser(res.data);
     alert(`Updated to ${res.data}`);
   };
 

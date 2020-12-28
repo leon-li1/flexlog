@@ -5,7 +5,7 @@ import Gear from "./Gear";
 import Info from "./Info";
 import Link from "next/link";
 
-export default function Options({ set }) {
+export default function Options({ set, setUser }) {
   return (
     <OptionContainer>
       <Link href="/workouts">

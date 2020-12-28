@@ -14,11 +14,13 @@ export default function Home() {
       <Header isLoggedout={true} />
       <MainContainer>
         <Title>You don't improve what you don't track...</Title>
-        {{
-          "Login": <LoginModal setState={setState} />,
-          "CreateAccount": <CreateAccountModal setState={setState} />,
-          "Code": <ResetPasswordModal setState={setState} />,
-        }[state]}
+        {
+          {
+            Login: <LoginModal setState={setState} />,
+            CreateAccount: <CreateAccountModal setState={setState} />,
+            Code: <ResetPasswordModal setState={setState} />,
+          }[state]
+        }
         <Quotes />
       </MainContainer>
     </PageContainer>

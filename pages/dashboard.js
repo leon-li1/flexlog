@@ -34,14 +34,14 @@ export default function Dashboard() {
           <QuoteCard />
         </Container>
       </MainContainer>
-      {(() => {
-        switch (state) {
-          case "Settings":
-            return <SettingsPopup set={setState} user={user} />;
-          case "Info":
-            return <InfoPopup set={setState} />;
-        }
-      })()}
+      {
+        {
+          Settings: (
+            <SettingsPopup set={setState} user={user} setUser={setUser} />
+          ),
+          Info: <InfoPopup set={setState} />,
+        }[state]
+      }
     </PageContainer>
   );
 }
