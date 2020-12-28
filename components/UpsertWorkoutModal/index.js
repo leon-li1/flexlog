@@ -18,6 +18,7 @@ const defaultData = {
 
 const UpsertWorkoutModal = ({ isVisible, setVisible, initialData }) => {  
   const [data, setData] = useState(initialData ?? defaultData);
+  const [focusedIdx, setFocusedIdx] = useState(null);
 
   function addExercise() {
     const newData = {...data};
@@ -41,11 +42,37 @@ const UpsertWorkoutModal = ({ isVisible, setVisible, initialData }) => {
           </NumButtonContainer>
         </HeaderContainer>
         {data.exercises.map((e, idx) => (
-          <ExerciseRow exercise={e} idx={idx} setData={setData}/>
+          <ExerciseRow exercise={e} idx={idx} setData={setData} focused={idx === focusedIdx} onFocus={() => setFocusedIdx(idx)}/>
         ))}
+        <ActionContainer>
+        <ActionButton onClick={() => setVisible(false)}>Cancel</ActionButton>
+        <ActionButton>Add workout</ActionButton>
+        </ActionContainer>
       </PopupModal>
   );
 }
+
+const ActionContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  padding: 0.5em 0;
+`
+
+const ActionButton = styled.button`
+  background-color: #fff;
+  color: #000;
+  border-radius: 17px;
+  margin: 0 3px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.6em;
+  padding: 0.5em;
+  line-height: 1.0;
+  :focus {
+    outline: none;
+  }
+`
 
 const HeaderContainer = styled.div`
   display: flex;
