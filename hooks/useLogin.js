@@ -16,7 +16,10 @@ function useLogin() {
     };
     getUser();
   }, []);
-  return state;
+  const setUser = (newUser) => {
+    setState([true, null, newUser]);
+  }
+  return [...state, setUser];
 }
 
 export default useLogin;

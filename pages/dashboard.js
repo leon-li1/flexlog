@@ -14,7 +14,7 @@ import { useRouter } from "next/router";
 
 export default function Dashboard() {
   const [state, setState] = useState("");
-  const [loading, error, user] = useLogin();
+  const [loading, error, user, setUser] = useLogin();
   const router = useRouter();
 
   if (error) router.push("/");
