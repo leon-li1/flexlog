@@ -1,23 +1,8 @@
-import styled from "styled-components";
+import RegularInput from '../Input';
+import styled from 'styled-components';
 
-export const Input = styled.input`
-  display: block;
-  background-color: ${(p) => p.theme.colors.background3};
-  width: 100%;
-  border-radius: 17px;
-  font-size: 1em;
+export const Input = styled(RegularInput)`
   margin: 0.5em;
-  padding: 0.3em 0.8em;
-  color: white;
-  border: none;
-
-  ::placeholder {
-    color: white;
-  }
-
-  :focus {
-    outline: none;
-  }
+  margin-left: auto;
+  width: 70%;
 `;
-
-// export default Input;
