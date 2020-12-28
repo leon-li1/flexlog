@@ -4,14 +4,16 @@ import { Input } from "../LoginModal/Input";
 import { Modal, ModalTitle } from "../LoginModal/Modal";
 import { useState, useRef } from "react";
 import axios from "axios";
+import useErrorMsg from '../../hooks/useErrorMsg';
+import { useRouter } from 'next/router';
 
-const CreateAccountModal = ({ props }) => {
+const CreateAccountModal = ({ setState }) => {
   const inputName = useRef();
   const inputEmail = useRef();
   const inputPassword = useRef();
   const inputConfirmPassword = useRef();
-  const [error, setError] = useState(false);
-  const [errorMsg, setErrorMsg] = useState("");
+  const [error, triggerErr] = useErrorMsg();
+  const router = useRouter();
 
   const signUp = async () => {
     const req = {
@@ -23,34 +25,30 @@ const CreateAccountModal = ({ props }) => {
 
     try {
       const res = await axios.post("http://localhost:8000/api/users/add", req);
-      props("Login");
+      // TODO: this should just log them in wtf
+      // router.push('/dashboard')
+      setState("Login");
     } catch (err) {
       switch (err.response.data) {
         case '"name" is not allowed to be empty':
-          setErrorMsg("Name is required");
-          return setError(true);
+          return triggerErr("Name is required");
         case '"name" length must be less than or equal to 15 characters long':
-          setErrorMsg("Name is too long");
-          return setError(true);
+          return triggerErr("Name is too long");
         case '"email" must be a valid email':
-          setErrorMsg("Invalid email entered");
-          return setError(true);
+          return triggerErr("Invalid email entered");
         case '"password" length must be at least 4 characters long':
-          setErrorMsg("Password is too short");
-          return setError(true);
+          return triggerErr("Password is too short");
         case '"passwordConfirm" must be [ref:password]':
-          setErrorMsg("Passwords don't match");
-          return setError(true);
+          return triggerErr("Passwords don't match");
+        default:
+          return triggerErr(err.response.data);
       }
     }
   };
 
-  // const handleChange = (event) => {
-  //   setText({ ...text, [event.target.name]: event.target.value });
-  // };
-
   return (
     <Modal>
+      {error}
       <ModalTitle>Create a new account</ModalTitle>
       <Input type="text" placeholder="Name..." ref={inputName} />
       <Input type="email" placeholder="Email..." ref={inputEmail} />
@@ -61,8 +59,6 @@ const CreateAccountModal = ({ props }) => {
         ref={inputConfirmPassword}
       />
       <Button onClick={async () => await signUp()}>Sign Up</Button>
-      <button onClick={() => setError(!error)}>toggle</button>
-      <ErrorContainer isVisible={error}>{errorMsg}</ErrorContainer>
     </Modal>
   );
 };

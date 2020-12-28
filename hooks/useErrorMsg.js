@@ -2,7 +2,8 @@ import ReactDOM from 'react-dom';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-function useErrorMsg(msg, waitTime = 4000) {
+function useErrorMsg(waitTime = 4000) {
+  const [msg, setMsg] = useState("an error occurred");
   const [isVisible, setVisible] = useState(false);
   const [curTimeout, setCurTimeout] = useState(null);
   const [hasRendered, setRendered] = useState(false);
@@ -13,7 +14,8 @@ function useErrorMsg(msg, waitTime = 4000) {
   if(!hasRendered) return [null, () => null];
 
   const portal = ReactDOM.createPortal(<ErrorContainer isVisible={isVisible}>{msg}</ErrorContainer>, document.body);
-  const trigger = () => {
+  const trigger = (curMsg) => {
+    setMsg(curMsg);
     if(curTimeout) clearTimeout(curTimeout);
     setVisible(true);
     const timeout = setTimeout(() => {
