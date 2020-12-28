@@ -2,14 +2,16 @@ import styled from "styled-components";
 import { ModalTitle } from "../LoginModal/Modal";
 import { useState, useRef } from "react";
 import UnitsSwitch from "./UnitsSwitch";
+import useErrorMsg from "../../hooks/useErrorMsg";
 
 import axios from "axios";
 
-const SettingsPopup = ({ set, user }) => {
+const SettingsPopup = ({ set, user, setUser }) => {
   const inputName = useRef();
   const inputEmail = useRef();
   const inputPassword = useRef();
   const inputPasswordConfirm = useRef();
+  const [error, trigger] = useErrorMsg();
 
   const [units, setUnits] = useState("Metric");
 
@@ -21,20 +23,21 @@ const SettingsPopup = ({ set, user }) => {
       passwordConfirm: inputPasswordConfirm.current.value || "TEST",
       units: units,
     };
-    console.log({
-      ...text,
-      units: units,
-    });
-    const res = await axios.patch(
-      "http://localhost:8000/api/users/update",
-      text,
-      { withCredentials: true }
-    );
-    alert(`Updated to ${res.data}`);
+    try {
+      const res = await axios.patch(
+        "http://localhost:8000/api/users/update",
+        text,
+        { withCredentials: true }
+      );
+      setUser(res.data);
+    } catch (err) {
+      trigger(err?.response?.data || err.toString());
+    }
   };
 
   return (
     <Modal>
+      {error}
       <ModalTitle>Settings</ModalTitle>
       <FieldContainer>
         <label for="name">Change name</label>

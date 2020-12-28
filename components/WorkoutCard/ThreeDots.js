@@ -1,5 +1,6 @@
-const ThreeDots = ({ className }) => (
+const ThreeDots = ({ className, openMenu, setOpenMenu }) => (
   <svg
+    onClick={() => setOpenMenu(!openMenu)}
     className={className}
     width="10"
     height="36"

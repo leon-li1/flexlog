@@ -1,17 +1,21 @@
 import styled from "styled-components";
 import ThreeDots from "./ThreeDots";
+import ThreeDotMenu from "./ThreedotMenu";
 import ExerciseInfo from "./ExcersiseInfo";
+import { useState } from "react";
 
 export default function Workoutcard({ name, exercises }) {
+  const [openMenu, setOpenMenu] = useState(false);
   const zip = (a, b) => a.map((aVal, i) => [aVal, b[i]]);
 
   return (
     <Card>
       <MyContainer2>
         <NameLabel>{name}</NameLabel>
-        <StyledThreeDots />
+        <StyledThreeDots openMenu={openMenu} setOpenMenu={setOpenMenu} />
       </MyContainer2>
       <MyContainer>
+        {openMenu && <ThreeDotMenu />}
         {exercises.map((ex, idx) => (
           <ExerciseInfo
             key={idx}
