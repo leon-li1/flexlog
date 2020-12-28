@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import useLogin from '../hooks/useLogin';
 import {useRouter} from 'next/router';
+import HomeButton from '../components/HomeButton';
 
 export default function Dashboard() {
   const [workouts, setWorkouts] = useState([]);
@@ -65,6 +66,7 @@ export default function Dashboard() {
           );
         })}
       </MainContainer>
+    <HomeButton/>
     </PageContainer>
   );
 }
