@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import PopupModal from '../PopupModal';
 import Input from '../Input';
+import { ExerciseRow } from './ExerciseRow';
 
 const defaultData = {
   name: '',
@@ -40,9 +41,7 @@ const UpsertWorkoutModal = ({ isVisible, setVisible, initialData }) => {
           </NumButtonContainer>
         </HeaderContainer>
         {data.exercises.map((e, idx) => (
-          <ExerciseRow>
-            <span>Exercise #{idx+1}</span> 
-          </ExerciseRow>
+          <ExerciseRow exercise={e} idx={idx} setData={setData}/>
         ))}
       </PopupModal>
   );
@@ -83,13 +82,5 @@ const WorkoutNumButton = styled.button`
     outline: none;
   }
 `
-
-const ExerciseRow = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  padding: 0.3em 0;
-`
-
 
 export default UpsertWorkoutModal;

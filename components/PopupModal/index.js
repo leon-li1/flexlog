@@ -1,6 +1,7 @@
 import styled, { keyframes } from 'styled-components';
 
 const PopupModal = ({ isVisible, setVisible, children }) => {  
+  if(isVisible === null) return null;
   return (
       <BackgroundCover isVisible={isVisible} onClick={() => setVisible(false)}>
         <Container isVisible={isVisible} onClick={(e) => e.stopPropagation()}>

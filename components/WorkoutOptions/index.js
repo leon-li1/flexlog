@@ -6,7 +6,7 @@ import UpsertWorkoutModal from "../UpsertWorkoutModal";
 import { useState } from 'react';
 
 export default function Options({ set }) {
-  const [addVisible, setAddVisible] = useState(false);
+  const [addVisible, setAddVisible] = useState(null);
 
   return (
     <OptionContainer>
