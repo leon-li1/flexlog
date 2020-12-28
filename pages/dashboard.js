@@ -11,6 +11,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import useLogin from "../hooks/useLogin";
 import { useRouter } from "next/router";
+import Loader from '../components/Loader';
 
 export default function Dashboard() {
   const [state, setState] = useState("");
@@ -18,7 +19,7 @@ export default function Dashboard() {
   const router = useRouter();
 
   if (error) router.push("/");
-  if (loading || error) return <p>loading...</p>;
+  if (loading || error) return <Loader />;
 
   return (
     <PageContainer>

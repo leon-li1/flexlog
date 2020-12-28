@@ -17,7 +17,7 @@ function useLogin() {
     getUser();
   }, []);
   const setUser = (newUser) => {
-    setState([true, null, newUser]);
+    setState([false, null, newUser]);
   }
   return [...state, setUser];
 }

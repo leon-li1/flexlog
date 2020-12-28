@@ -7,6 +7,7 @@ import axios from "axios";
 import useLogin from '../hooks/useLogin';
 import {useRouter} from 'next/router';
 import HomeButton from '../components/HomeButton';
+import Loader from '../components/Loader';
 
 export default function Dashboard() {
   const [workouts, setWorkouts] = useState([]);
@@ -24,7 +25,7 @@ export default function Dashboard() {
   }, []);
 
   if(error) router.push('/');
-  if(loading || error) return <p>loading...</p>;
+  if(loading || error) return <Loader />;
 
   return (
     <PageContainer>

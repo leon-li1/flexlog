@@ -13,6 +13,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     font-size: 24px;
     background: linear-gradient(0deg, #00316C 0%, #001630 119.43%), #00244E;
+    min-height: 100vh;
   }
 
   h1, h2, h3, h4, p, span {
