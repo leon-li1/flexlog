@@ -1,8 +1,12 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-export default function Switch() {
+export default function UnitsSwitch({ units, setUnits }) {
   const [toggle, setToggle] = useState(true);
+
+  useEffect(() => {
+    setUnits(toggle ? "Metric" : "Imperial");
+  }, [toggle]);
 
   return (
     <>

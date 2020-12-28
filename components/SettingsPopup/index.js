@@ -1,26 +1,36 @@
 import styled from "styled-components";
 import { ModalTitle } from "../LoginModal/Modal";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import UnitsSwitch from "./UnitsSwitch";
 
 import axios from "axios";
 
-const SettingsPopup = ({ set }) => {
-  const [text, setText] = useState({
-    name: "",
-    email: "",
-    password: "",
-    passwordConfirm: "",
-    units: "",
-  });
+const SettingsPopup = ({ set, user }) => {
+  const inputName = useRef();
+  const inputEmail = useRef();
+  const inputPassword = useRef();
+  const inputPasswordConfirm = useRef();
+
+  const [units, setUnits] = useState("Metric");
 
   const confirmChanges = async () => {
-    await axios.post("http://localhost:8000/api/users/add", text);
-    alert(text);
-  };
-
-  const handleChange = (event) => {
-    setText({ ...text, [event.target.name]: event.target.value });
+    const text = {
+      name: inputName.current.value || user.name,
+      email: inputEmail.current.value || user.email,
+      password: inputPassword.current.value || "TEST",
+      passwordConfirm: inputPasswordConfirm.current.value || "TEST",
+      units: units,
+    };
+    console.log({
+      ...text,
+      units: units,
+    });
+    const res = await axios.patch(
+      "http://localhost:8000/api/users/update",
+      text,
+      { withCredentials: true }
+    );
+    alert(`Updated to ${res.data}`);
   };
 
   return (
@@ -28,46 +38,37 @@ const SettingsPopup = ({ set }) => {
       <ModalTitle>Settings</ModalTitle>
       <FieldContainer>
         <label for="name">Change name</label>
-        <Input
-          name="name"
-          id="name"
-          type="text"
-          placeholder="Name..."
-          onChange={handleChange}
-        />
+        <Input id="name" type="text" placeholder={user.name} ref={inputName} />
       </FieldContainer>
       <FieldContainer>
         <label for="email">Change email</label>
         <Input
-          name="email"
           id="email"
           type="email"
-          placeholder="Email..."
-          onChange={handleChange}
+          placeholder={user.email}
+          ref={inputEmail}
         />
       </FieldContainer>
       <FieldContainer>
         <label for="password">Change password</label>
         <Input
-          name="password"
           id="password"
           type="password"
           placeholder="Password..."
-          onChange={handleChange}
+          ref={inputPassword}
         />
       </FieldContainer>
       <FieldContainer>
         <label for="passwordConfirm">Confirm password</label>
         <Input
-          name="passwordConfirm"
           id="passwordConfirm"
           type="password"
           placeholder="Confirm password..."
-          onChange={handleChange}
+          ref={inputPasswordConfirm}
         />
       </FieldContainer>
       <FieldContainer>
-        <UnitsSwitch />
+        <UnitsSwitch units={user.units} setUnits={setUnits} />
       </FieldContainer>
       <BtnContainer>
         <Button onClick={() => set("")}>Cancel</Button>
@@ -101,24 +102,24 @@ const BtnContainer = styled.div`
   margin-left: auto;
 `;
 
-const Input = styled.input`	
-  display: block;	
-  background-color: ${(p) => p.theme.colors.background3};	
-  width: 70%;	
-  border-radius: 17px;	
-  font-size: 1em;	
-  margin: 0.5em;	
-  margin-left: auto;	
-  padding: 0.3em 0.8em;	
-  color: white;	
-  border: none;	
-  ::placeholder {	
-    color: white;	
-  }	
-  :focus {	
-    outline: none;	
-  }	
-`;	
+const Input = styled.input`
+  display: block;
+  background-color: ${(p) => p.theme.colors.background3};
+  width: 70%;
+  border-radius: 17px;
+  font-size: 1em;
+  margin: 0.5em;
+  margin-left: auto;
+  padding: 0.3em 0.8em;
+  color: white;
+  border: none;
+  ::placeholder {
+    color: white;
+  }
+  :focus {
+    outline: none;
+  }
+`;
 
 const Button = styled.button`
   display: block;
