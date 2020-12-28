@@ -67,13 +67,4 @@ const CreateAccountModal = ({ props }) => {
   );
 };
 
-const ErrorContainer = styled.div`
-  position: fixed;
-  bottom: ${(p) => (p.isVisible ? 100 : -100)}px;
-  transition: bottom ease-in-out 0.25s;
-  background-color: #d24f4f;
-  border-radius: 100px;
-  padding: 0.5em 1em;
-`;
-
 export default CreateAccountModal;
