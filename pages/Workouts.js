@@ -4,9 +4,13 @@ import WorkoutCard from "../components/WorkoutCard/index";
 import WorkoutOptions from "../components/WorkoutOptions/index";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import useLogin from '../hooks/useLogin';
+import {useRouter} from 'next/router';
 
 export default function Dashboard() {
   const [workouts, setWorkouts] = useState([]);
+  const [loading, error] = useLogin();
+  const router = useRouter();
 
   useEffect(() => {
     const getWorkouts = async () => {
@@ -17,6 +21,9 @@ export default function Dashboard() {
     };
     getWorkouts();
   }, []);
+
+  if(error) router.push('/');
+  if(loading || error) return <p>loading...</p>;
 
   return (
     <PageContainer>
