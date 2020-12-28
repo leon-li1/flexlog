@@ -9,16 +9,16 @@ import SettingsPopup from "../components/SettingsPopup/index";
 import InfoPopup from "../components/InfoPopup/index";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import useLogin from '../hooks/useLogin';
-import { useRouter } from 'next/router';
+import useLogin from "../hooks/useLogin";
+import { useRouter } from "next/router";
 
 export default function Dashboard() {
   const [state, setState] = useState("");
   const [loading, error, user] = useLogin();
   const router = useRouter();
 
-  if(error) router.push('/');
-  if(loading || error) return <p>loading...</p>;
+  if (error) router.push("/");
+  if (loading || error) return <p>loading...</p>;
 
   return (
     <PageContainer>
@@ -37,7 +37,7 @@ export default function Dashboard() {
       {(() => {
         switch (state) {
           case "Settings":
-            return <SettingsPopup set={setState} />;
+            return <SettingsPopup set={setState} user={user} />;
           case "Info":
             return <InfoPopup set={setState} />;
         }
