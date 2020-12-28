@@ -1,9 +1,7 @@
 import styled from "styled-components";
 import { useState } from "react";
 
-export default function PointsCard() {
-  const [points, setPoints] = useState(129);
-
+export default function PointsCard({ points }) {
   return (
     <Card>
       <PointsLabel>{points}</PointsLabel>

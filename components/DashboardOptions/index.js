@@ -8,25 +8,25 @@ import Link from "next/link";
 export default function Options({ set }) {
   return (
     <OptionContainer>
-      <Option>
-        <Dumbbell />
-        <Link href="/workouts">
+      <Link href="/workouts">
+        <Option>
+          <Dumbbell />
           <Text>My Workouts</Text>
-        </Link>
-      </Option>
+        </Option>
+      </Link>
       <Option>
         <StatsIcon />
         {/* <Link href="/stats"> */}
         <Text>My Stats</Text>
         {/* </Link> */}
       </Option>
-      <Option>
-        <Gear set={set} />
-        <Text onClick={() => set("Settings")}>Settings</Text>
+      <Option onClick={() => set("Settings")}>
+        <Gear />
+        <Text>Settings</Text>
       </Option>
-      <Option>
-        <Info set={set} />
-        <Text onClick={() => set("Info")}>Learn More</Text>
+      <Option onClick={() => set("Info")}>
+        <Info />
+        <Text>Learn More</Text>
       </Option>
     </OptionContainer>
   );

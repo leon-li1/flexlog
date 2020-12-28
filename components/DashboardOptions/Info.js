@@ -1,4 +1,4 @@
-const Info = ({ className, set }) => (
+const Info = ({ className }) => (
   <svg
     className={className}
     width="52"

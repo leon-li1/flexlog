@@ -1,13 +1,27 @@
 import styled from "styled-components";
 import Logo from "./Logo";
 import LogoutIcon from "./LogoutIcon";
+import { useRouter } from "next/router";
+import axios from "axios";
 
-export default function Header() {
+export default function Header({ isLoggedout }) {
+  const router = useRouter();
+
+  const logout = async () => {
+    await axios.get("http://localhost:8000/api/logout", {
+      withCredentials: true,
+    });
+    router.push("/");
+  };
+
   return (
     <NavBar>
       <LogoText>FLEXLOG</LogoText>
       <Logo />
-      <LogoutContainer>
+      <LogoutContainer
+        onClick={logout}
+        visibility={isLoggedout ? "hidden" : "visible"}
+      >
         <LogoutIcon />
         <LogoutText>Log out</LogoutText>
       </LogoutContainer>
@@ -35,9 +49,11 @@ const LogoutContainer = styled.div`
   display: flex;
   margin-left: auto;
   align-items: center;
+  cursor: pointer;
+  visibility: ${(p) => p.visibility};
 `;
 
 const LogoutText = styled.p`
   font-size: 1em;
-  margin: 0.2em;
+  margin: 0.4em;
 `;

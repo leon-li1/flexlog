@@ -2,11 +2,12 @@ import ForgotPassword from "./ForgotPassword";
 import { Button } from "./Button";
 import { Input } from "./Input";
 import { Modal, ModalTitle } from "./Modal";
-import Link from "next/link";
+import { useRouter } from "next/router";
 import { useRef } from "react";
 import axios from "axios";
 
 export default function LoginModal({ props }) {
+  const router = useRouter();
   const inputEmail = useRef();
   const inputPassword = useRef();
 
@@ -18,6 +19,7 @@ export default function LoginModal({ props }) {
     await axios.post("http://localhost:8000/api/login", req, {
       withCredentials: true,
     });
+    router.push("/dashboard");
   };
 
   return (
@@ -27,9 +29,7 @@ export default function LoginModal({ props }) {
       <Input type="password" placeholder="Password..." ref={inputPassword} />
       <ForgotPassword>Forgot password?</ForgotPassword>
 
-      {/* <Link href="/dashboard"> */}
       <Button onClick={login}>Log in</Button>
-      {/* </Link> */}
       <Button
         onClick={() => {
           props("CreateAccount");

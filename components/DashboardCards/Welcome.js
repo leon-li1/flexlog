@@ -3,15 +3,30 @@ import { useState } from "react";
 import Star from "./Star";
 import DateLine from "./DateLine";
 
-export default function WelcomeCard() {
-  const [name, setName] = useState("Leon");
-  const [stars, setStars] = useState(3);
+export default function WelcomeCard({ userName, stars }) {
+  const monthNames = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  const dateObj = new Date();
+  const month = monthNames[dateObj.getMonth()];
+  const day = dateObj.getDate();
 
   return (
     <Card>
       <CardTitle>Welcome back,</CardTitle>
-      <NameLabel>{name}</NameLabel>
-      <StyledSVG dateText={"Dec 20"} />
+      <NameLabel>{userName}</NameLabel>
+      <StyledSVG dateText={`${month} ${day}`} />
       <StarsContainer>
         {[...Array(stars).keys()].map((key) => (
           <Star key={key} />

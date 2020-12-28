@@ -7,19 +7,30 @@ import QuoteCard from "../components/DashboardCards/Quote";
 import Options from "../components/DashboardOptions/index";
 import SettingsPopup from "../components/SettingsPopup/index";
 import InfoPopup from "../components/InfoPopup/index";
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function Dashboard() {
+  const [user, setUser] = useState({});
   const [state, setState] = useState("");
+
+  useEffect(() => {
+    const getUser = async () => {
+      const res = await axios.get("http://localhost:8000/api/users/me", {
+        withCredentials: true,
+      });
+      setUser(res.data);
+    };
+    getUser();
+  }, []);
 
   return (
     <PageContainer>
       <Header />
       <MainContainer>
         <Container>
-          <WelcomeCard />
-          <PointsCard />
+          <WelcomeCard userName={user.name} stars={user.stars} />
+          <PointsCard points={user.points} />
           <Options set={setState} />
         </Container>
         <Container>

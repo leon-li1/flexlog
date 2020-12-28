@@ -7,12 +7,12 @@ import Quotes from "../components/Quotes/index";
 import { useState } from "react";
 
 export default function Home() {
-  const [errorMsg, setErrorMsg] = useState(false);
+  const [errorMsg, setErrorMsg] = useState(true);
   const [state, setState] = useState("Login");
 
   return (
     <PageContainer>
-      <Header />
+      <Header isLoggedout={true} />
       <MainContainer>
         <Title>You don't improve what you don't track...</Title>
         {(() => {
@@ -20,29 +20,29 @@ export default function Home() {
             case "Login":
               return <LoginModal props={setState} />;
             case "CreateAccount":
-              return <CreateAccountModal />;
+              return <CreateAccountModal props={setState} />;
             case "Code":
-              return <ResetPasswordModal />;
+              return <ResetPasswordModal props={setState} />;
           }
         })()}
         <Quotes />
-        <button onClick={() => setErrorMsg(!errorMsg)}>toggle</button>
+        {/* <button onClick={() => setErrorMsg(!errorMsg)}>toggle</button>
         <ErrorContainer isVisible={errorMsg}>
           Incorrect email or password
-        </ErrorContainer>
+        </ErrorContainer> */}
       </MainContainer>
     </PageContainer>
   );
 }
 
-const ErrorContainer = styled.div`
-  position: fixed;
-  bottom: ${(p) => (p.isVisible ? -100 : 100)}px;
-  transition: bottom ease-in-out 0.25s;
-  background-color: #d24f4f;
-  border-radius: 100px;
-  padding: 0.5em 1em;
-`;
+// const ErrorContainer = styled.div`
+//   position: fixed;
+//   bottom: ${(p) => (p.isVisible ? -220 : 220)}px;
+//   transition: bottom ease-in-out 0.25s;
+//   background-color: #d24f4f;
+//   border-radius: 100px;
+//   padding: 0.5em 1em;
+// `;
 
 const PageContainer = styled.div`
   background: ${({ theme }) => theme.colors.background1};
