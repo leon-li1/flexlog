@@ -1,17 +1,17 @@
 import styled from "styled-components";
-import Header from "../components/Header/index";
+import Header from "../components/Header";
 import WelcomeCard from "../components/DashboardCards/Welcome";
 import PointsCard from "../components/DashboardCards/Points";
 import GraphCard from "../components/DashboardCards/Graph";
 import QuoteCard from "../components/DashboardCards/Quote";
-import Options from "../components/DashboardOptions/index";
-import SettingsPopup from "../components/SettingsPopup/index";
-import InfoPopup from "../components/InfoPopup/index";
+import Options from "../components/DashboardOptions";
+import SettingsPopup from "../components/SettingsPopup";
+import InfoPopup from "../components/InfoPopup";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import useLogin from "../hooks/useLogin";
 import { useRouter } from "next/router";
-import Loader from '../components/Loader';
+import Loader from "../components/Loader";
 
 export default function Dashboard() {
   const [state, setState] = useState("");

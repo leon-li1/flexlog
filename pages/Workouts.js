@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import Header from "../components/Header/index";
-import WorkoutCard from "../components/WorkoutCard/index";
-import WorkoutOptions from "../components/WorkoutOptions/index";
+import Header from "../components/Header";
+import WorkoutCard from "../components/WorkoutCard";
+import WorkoutOptions from "../components/WorkoutOptions";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import useLogin from "../hooks/useLogin";

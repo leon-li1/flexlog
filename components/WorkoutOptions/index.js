@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import ShareIcon from "./ShareIcon";
 import Plus from "./Plus";
-import HomeIcon from "./HomeIcon";
 import UpsertWorkoutModal from "../UpsertWorkoutModal";
 import { useState } from "react";
 

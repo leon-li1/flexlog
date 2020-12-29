@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import Header from "../components/Header/index";
-import LoginModal from "../components/LoginModal/index";
-import CreateAccountModal from "../components/CreateAccountModal/index";
-import ResetPasswordModal from "../components/ResetPasswordModal/index";
-import Quotes from "../components/Quotes/index";
+import Header from "../components/Header";
+import LoginModal from "../components/LoginModal";
+import CreateAccountModal from "../components/CreateAccountModal";
+import ResetPasswordModal from "../components/ResetPasswordModal";
+import Quotes from "../components/Quotes";
 import { useState } from "react";
 
 export default function Home() {

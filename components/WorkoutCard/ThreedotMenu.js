@@ -44,15 +44,14 @@ export default function ThreedotMenu({ workoutId, workouts, setWorkouts }) {
 const MenuContainer = styled.div`
   position: absolute;
   left: 70%;
+  overflow: hidden;
   width: 10vw;
   border-radius: 22px;
   background-color: white;
 `;
 
-// TODO:: fix border rdius
 const Option = styled.p`
   padding: 0.3em;
-  border-radius: 22px;
   color: ${(p) => p.theme.colors.background3};
   :hover {
     background-color: #e7e7e7;

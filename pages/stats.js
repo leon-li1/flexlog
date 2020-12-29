@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Header from "../components/Header/index";
+import Header from "../components/Header";
 
 export default function stats() {
   const errorMsg = "Incorrect email or password";
