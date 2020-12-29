@@ -4,10 +4,10 @@ import WorkoutCard from "../components/WorkoutCard/index";
 import WorkoutOptions from "../components/WorkoutOptions/index";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import useLogin from '../hooks/useLogin';
-import {useRouter} from 'next/router';
-import HomeButton from '../components/HomeButton';
-import Loader from '../components/Loader';
+import useLogin from "../hooks/useLogin";
+import { useRouter } from "next/router";
+import HomeButton from "../components/HomeButton";
+import Loader from "../components/Loader";
 
 export default function Dashboard() {
   const [workouts, setWorkouts] = useState([]);
@@ -24,8 +24,8 @@ export default function Dashboard() {
     getWorkouts();
   }, []);
 
-  if(error) router.push('/');
-  if(loading || error) return <Loader />;
+  if (error) router.push("/");
+  if (loading || error) return <Loader />;
 
   return (
     <PageContainer>
@@ -46,11 +46,15 @@ export default function Dashboard() {
               <Container2 key={idx}>
                 <WorkoutCard
                   key={workout._id}
+                  workoutId={workout._id}
+                  setWorkouts={setWorkouts}
                   name={workout.name}
                   exercises={workout.exercises}
                 />
                 <WorkoutCard
                   key={workouts[idx + 1]._id}
+                  workoutId={workouts[idx + 1]._id}
+                  setWorkouts={setWorkouts}
                   name={workouts[idx + 1].name}
                   exercises={workouts[idx + 1].exercises}
                 />
@@ -60,6 +64,8 @@ export default function Dashboard() {
             <Container2 key={idx}>
               <WorkoutCard
                 key={workout._id}
+                workoutId={workout._id}
+                setWorkouts={setWorkouts}
                 name={workout.name}
                 exercises={workout.exercises}
               />
@@ -67,7 +73,7 @@ export default function Dashboard() {
           );
         })}
       </MainContainer>
-    <HomeButton/>
+      <HomeButton />
     </PageContainer>
   );
 }

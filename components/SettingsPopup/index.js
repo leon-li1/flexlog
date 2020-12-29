@@ -3,7 +3,6 @@ import { ModalTitle } from "../LoginModal/Modal";
 import { useState, useRef } from "react";
 import UnitsSwitch from "./UnitsSwitch";
 import useErrorMsg from "../../hooks/useErrorMsg";
-
 import axios from "axios";
 
 const SettingsPopup = ({ set, user, setUser }) => {
@@ -12,7 +11,6 @@ const SettingsPopup = ({ set, user, setUser }) => {
   const inputPassword = useRef();
   const inputPasswordConfirm = useRef();
   const [error, trigger] = useErrorMsg();
-
   const [units, setUnits] = useState("Metric");
 
   const confirmChanges = async () => {

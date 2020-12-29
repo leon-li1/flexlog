@@ -1,11 +1,29 @@
 import styled from "styled-components";
+import useErrorMsg from "../../hooks/useErrorMsg";
+import axios from "axios";
 
-export default function ThreedotMenu({ name, sets }) {
+export default function ThreedotMenu({ workoutId, workouts, setWorkouts }) {
+  const [error, trigger] = useErrorMsg();
+
+  const handleDelete = async () => {
+    try {
+      const res = await axios.delete(
+        `http://localhost:8000/workouts/delete/${workoutId}`,
+        { withCredentials: true }
+      );
+      //   const index = workouts.indexOf(workoutId);
+      setWorkouts(res.data);
+    } catch (err) {
+      trigger(err?.response?.data || err.toString());
+    }
+  };
+
   return (
     <MenuContainer>
+      {error}
       <Option>Edit</Option>
       <Option>Duplicate</Option>
-      <Option>Delete</Option>
+      <Option onClick={handleDelete()}>Delete</Option>
     </MenuContainer>
   );
 }
