@@ -38,7 +38,7 @@ const SettingsPopup = ({ set, user, setUser }) => {
       {error}
       <ModalTitle>Settings</ModalTitle>
       <FieldContainer>
-        <label for="name">Change name</label>
+        <label htmlFor="name">Change name</label>
         <Input id="name" type="text" placeholder={user.name} ref={inputName} />
       </FieldContainer>
       <FieldContainer>

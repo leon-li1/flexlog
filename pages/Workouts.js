@@ -36,7 +36,7 @@ export default function Dashboard() {
             <NameLabel>MY WORKOUTS</NameLabel>
             <WorkoutLabel>{workouts.length} Workouts</WorkoutLabel>
           </LabelContainer>
-          <WorkoutOptions />
+          <WorkoutOptions setWorkouts={setWorkouts} />
         </Container>
 
         {workouts.map((workout, idx) => {

@@ -4,12 +4,16 @@ import Plus from "./Plus";
 import UpsertWorkoutModal from "../UpsertWorkoutModal";
 import { useState } from "react";
 
-export default function Options({ set }) {
+export default function WorkoutOptions({ setWorkouts }) {
   const [addVisible, setAddVisible] = useState(null);
 
   return (
     <OptionContainer>
-      <UpsertWorkoutModal isVisible={addVisible} setVisible={setAddVisible} />
+      <UpsertWorkoutModal
+        isVisible={addVisible}
+        setVisible={setAddVisible}
+        setWorkouts={setWorkouts}
+      />
       <Option onClick={() => setAddVisible(true)}>
         <Plus />
         <Text>Add new workouts</Text>

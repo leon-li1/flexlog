@@ -3,23 +3,39 @@ import styled from "styled-components";
 import PopupModal from "../PopupModal";
 import Input from "../Input";
 import { ExerciseRow } from "./ExerciseRow";
+import axios from "axios";
+import useErrorMsg from "../../hooks/useErrorMsg";
+
+// {
+//     "name": "leg2s3",
+//     "numExercises": 2,
+//     "eNames": ["squa32", "rai23"],
+//     "eSets": [2,2],
+//     "eWeights": [[30, 40],[40, 45]],
+//     "eReps": [[12, 10],[8, 6]]
+// }
 
 const defaultData = {
   name: "",
-  numExercises: 1,
   exercises: [
     {
       name: "",
-      sets: 2,
-      weights: [5, 10],
-      reps: [10, 5],
+      sets: 1,
+      weights: [0],
+      reps: [0],
     },
   ],
 };
 
-const UpsertWorkoutModal = ({ isVisible, setVisible, initialData }) => {
+const UpsertWorkoutModal = ({
+  isVisible,
+  setVisible,
+  setWorkouts,
+  initialData,
+}) => {
   const [data, setData] = useState(initialData ?? defaultData);
   const [focusedIdx, setFocusedIdx] = useState(null);
+  const [error, trigger] = useErrorMsg();
 
   function addExercise() {
     const newData = { ...data };
@@ -32,11 +48,39 @@ const UpsertWorkoutModal = ({ isVisible, setVisible, initialData }) => {
     setData(newData);
   }
 
+  const addWorkout = async () => {
+    const req = {
+      name: data.name,
+      numExercises: data.exercises.length,
+      eNames: data.exercises.map((e) => e.name),
+      eSets: data.exercises.map((e) => e.sets),
+      eWeights: data.exercises.map((e) => e.weights),
+      eReps: data.exercises.map((e) => e.reps),
+    };
+
+    console.log(data);
+    console.log(req);
+    try {
+      const res = await axios.post("http://localhost:8000/workouts/add", req, {
+        withCredentials: true,
+      });
+      setWorkouts(res.data);
+      setData(defaultData);
+      setVisible(false);
+    } catch (err) {
+      trigger(err?.response?.data || err.toString());
+    }
+  };
+
   return (
     <PopupModal isVisible={isVisible} setVisible={setVisible}>
+      {error}
       <h2>Add a workout</h2>
       <HeaderContainer>
-        <NameInput />
+        <NameInput
+          value={data.name}
+          onChange={(e) => setData({ ...data, name: e.target.value })}
+        />
         <NumButtonContainer>
           <WorkoutNumButton onClick={addExercise}>+</WorkoutNumButton>
           <WorkoutNumButton onClick={removeExercise}>-</WorkoutNumButton>
@@ -44,6 +88,7 @@ const UpsertWorkoutModal = ({ isVisible, setVisible, initialData }) => {
       </HeaderContainer>
       {data.exercises.map((e, idx) => (
         <ExerciseRow
+          key={idx}
           exercise={e}
           idx={idx}
           setData={setData}
@@ -53,7 +98,7 @@ const UpsertWorkoutModal = ({ isVisible, setVisible, initialData }) => {
       ))}
       <ActionContainer>
         <ActionButton onClick={() => setVisible(false)}>Cancel</ActionButton>
-        <ActionButton>Add workout</ActionButton>
+        <ActionButton onClick={addWorkout}>Add workout</ActionButton>
       </ActionContainer>
     </PopupModal>
   );
