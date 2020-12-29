@@ -11,8 +11,21 @@ export default function ThreedotMenu({ workoutId, workouts, setWorkouts }) {
         `http://localhost:8000/workouts/delete/${workoutId}`,
         { withCredentials: true }
       );
-      //   const index = workouts.indexOf(workoutId);
       setWorkouts(res.data);
+    } catch (err) {
+      trigger(err?.response?.data || err.toString());
+    }
+  };
+
+  const handleDuplicate = async () => {
+    try {
+      const res = await axios.post(
+        `http://localhost:8000/workouts/duplicate/${workoutId}`,
+        {},
+        { withCredentials: true }
+      );
+      setWorkouts(res.data);
+      console.log(res.data.length);
     } catch (err) {
       trigger(err?.response?.data || err.toString());
     }
@@ -22,7 +35,7 @@ export default function ThreedotMenu({ workoutId, workouts, setWorkouts }) {
     <MenuContainer>
       {error}
       <Option>Edit</Option>
-      <Option>Duplicate</Option>
+      <Option onClick={handleDuplicate}>Duplicate</Option>
       <Option onClick={handleDelete}>Delete</Option>
     </MenuContainer>
   );
@@ -31,8 +44,6 @@ export default function ThreedotMenu({ workoutId, workouts, setWorkouts }) {
 const MenuContainer = styled.div`
   position: absolute;
   left: 70%;
-  /* float: right; */
-  /* clear: both; */
   width: 10vw;
   border-radius: 22px;
   background-color: white;
