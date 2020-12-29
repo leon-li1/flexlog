@@ -23,16 +23,18 @@ export default function ThreedotMenu({ workoutId, workouts, setWorkouts }) {
       {error}
       <Option>Edit</Option>
       <Option>Duplicate</Option>
-      <Option onClick={handleDelete()}>Delete</Option>
+      <Option onClick={handleDelete}>Delete</Option>
     </MenuContainer>
   );
 }
 
 const MenuContainer = styled.div`
   position: absolute;
+  left: 70%;
+  /* float: right; */
+  /* clear: both; */
   width: 10vw;
   border-radius: 22px;
-  margin-left: auto;
   background-color: white;
 `;
 

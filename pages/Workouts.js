@@ -34,7 +34,7 @@ export default function Dashboard() {
         <Container>
           <LabelContainer>
             <NameLabel>MY WORKOUTS</NameLabel>
-            <WorkoutLabel>3 Workouts</WorkoutLabel>
+            <WorkoutLabel>{workouts.length} Workouts</WorkoutLabel>
           </LabelContainer>
           <WorkoutOptions />
         </Container>
@@ -47,6 +47,7 @@ export default function Dashboard() {
                 <WorkoutCard
                   key={workout._id}
                   workoutId={workout._id}
+                  workouts={workouts}
                   setWorkouts={setWorkouts}
                   name={workout.name}
                   exercises={workout.exercises}
@@ -54,6 +55,7 @@ export default function Dashboard() {
                 <WorkoutCard
                   key={workouts[idx + 1]._id}
                   workoutId={workouts[idx + 1]._id}
+                  workouts={workouts}
                   setWorkouts={setWorkouts}
                   name={workouts[idx + 1].name}
                   exercises={workouts[idx + 1].exercises}
@@ -65,6 +67,7 @@ export default function Dashboard() {
               <WorkoutCard
                 key={workout._id}
                 workoutId={workout._id}
+                workouts={workouts}
                 setWorkouts={setWorkouts}
                 name={workout.name}
                 exercises={workout.exercises}
@@ -98,7 +101,7 @@ const LabelContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  width: 100%;
+  width: 70%;
   padding: 1em 0em;
 `;
 
