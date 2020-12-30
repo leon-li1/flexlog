@@ -10,8 +10,10 @@ const UpsertWorkoutModal = ({
   isVisible,
   setVisible,
   setWorkouts,
-  initialData,
   units,
+  initialData,
+  isUpdate,
+  workoutId,
 }) => {
   const defaultData = {
     name: "",
@@ -24,7 +26,7 @@ const UpsertWorkoutModal = ({
       },
     ],
   };
-  const [data, setData] = useState(defaultData);
+  const [data, setData] = useState(false || defaultData); // TODO
   const [focusedIdx, setFocusedIdx] = useState(null);
   const [error, trigger] = useErrorMsg();
 
@@ -33,6 +35,7 @@ const UpsertWorkoutModal = ({
     newData.exercises.push({ name: "", sets: 1, weights: [0], reps: [0] });
     setData(newData);
   }
+
   function removeExercise() {
     const newData = { ...data };
     newData.exercises.pop();
@@ -50,9 +53,15 @@ const UpsertWorkoutModal = ({
     };
 
     try {
-      const res = await axios.post("http://localhost:8000/workouts/add", req, {
-        withCredentials: true,
-      });
+      const res = await (isUpdate
+        ? axios.patch(
+            `http://localhost:8000/workouts/update/${workoutId}`,
+            req,
+            { withCredentials: true }
+          )
+        : axios.post("http://localhost:8000/workouts/add", req, {
+            withCredentials: true,
+          }));
       setWorkouts(res.data);
       setData(defaultData);
       setFocusedIdx(null);

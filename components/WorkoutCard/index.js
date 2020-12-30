@@ -6,10 +6,10 @@ import { useState } from "react";
 
 export default function Workoutcard({
   workoutId,
-  workouts,
   setWorkouts,
   name,
   exercises,
+  units,
 }) {
   const [openMenu, setOpenMenu] = useState(false);
   const zip = (a, b) => a.map((aVal, i) => [aVal, b[i]]);
@@ -24,8 +24,8 @@ export default function Workoutcard({
         {openMenu && (
           <ThreeDotMenu
             workoutId={workoutId}
-            workouts={workouts}
             setWorkouts={setWorkouts}
+            units={units}
           />
         )}
         {exercises.map((ex, idx) => (

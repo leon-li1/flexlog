@@ -26,6 +26,7 @@ export default function Dashboard() {
 
   if (error) router.push("/");
   if (loading || error) return <Loader />;
+  const units_ = user.units === "Metric" ? "lbs" : "kg";
 
   return (
     <PageContainer>
@@ -36,10 +37,7 @@ export default function Dashboard() {
             <NameLabel>MY WORKOUTS</NameLabel>
             <WorkoutLabel>{workouts.length} Workouts</WorkoutLabel>
           </LabelContainer>
-          <WorkoutOptions
-            setWorkouts={setWorkouts}
-            units={user.units === "Metric" ? "lbs" : "kg"}
-          />
+          <WorkoutOptions setWorkouts={setWorkouts} units={units_} />
         </Container>
 
         {workouts.map((workout, idx) => {
@@ -50,18 +48,20 @@ export default function Dashboard() {
                 <WorkoutCard
                   key={workout._id}
                   workoutId={workout._id}
-                  workouts={workouts}
+                  // workouts={workouts}
                   setWorkouts={setWorkouts}
                   name={workout.name}
                   exercises={workout.exercises}
+                  units={units_}
                 />
                 <WorkoutCard
                   key={workouts[idx + 1]._id}
                   workoutId={workouts[idx + 1]._id}
-                  workouts={workouts}
+                  // workouts={workouts}
                   setWorkouts={setWorkouts}
                   name={workouts[idx + 1].name}
                   exercises={workouts[idx + 1].exercises}
+                  units={units_}
                 />
               </Container2>
             );
@@ -70,10 +70,11 @@ export default function Dashboard() {
               <WorkoutCard
                 key={workout._id}
                 workoutId={workout._id}
-                workouts={workouts}
+                // workouts={workouts}
                 setWorkouts={setWorkouts}
                 name={workout.name}
                 exercises={workout.exercises}
+                units={units_}
               />
             </Container2>
           );

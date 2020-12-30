@@ -1,9 +1,33 @@
 import styled from "styled-components";
 import useErrorMsg from "../../hooks/useErrorMsg";
+import UpsertWorkoutModal from "../UpsertWorkoutModal";
+import { useState } from "react";
 import axios from "axios";
 
-export default function ThreedotMenu({ workoutId, workouts, setWorkouts }) {
+export default function ThreedotMenu({ workoutId, setWorkouts, units }) {
   const [error, trigger] = useErrorMsg();
+  const [addVisible, setAddVisible] = useState(null);
+
+  const getData = async () => {
+    try {
+      const res = await axios.get(
+        `http://localhost:8000/workouts/${workoutId}`,
+        { withCredentials: true }
+      );
+      const defaultData = {
+        name: res.data.name,
+        exercises: res.data.exercises.map((e) => ({
+          name: e.name,
+          sets: e.sets,
+          weights: e.weights,
+          reps: e.reps,
+        })),
+      };
+      return defaultData;
+    } catch (err) {
+      trigger(err?.response?.data || err.toString());
+    }
+  };
 
   const handleDelete = async () => {
     try {
@@ -34,7 +58,16 @@ export default function ThreedotMenu({ workoutId, workouts, setWorkouts }) {
   return (
     <MenuContainer>
       {error}
-      <Option>Edit</Option>
+      <UpsertWorkoutModal
+        isVisible={addVisible}
+        setVisible={setAddVisible}
+        setWorkouts={setWorkouts}
+        units={units}
+        initialData={getData()}
+        isUpdate={true}
+        workoutId={workoutId}
+      />
+      <Option onClick={() => setAddVisible(true)}>Edit</Option>
       <Option onClick={handleDuplicate}>Duplicate</Option>
       <Option onClick={handleDelete}>Delete</Option>
     </MenuContainer>
