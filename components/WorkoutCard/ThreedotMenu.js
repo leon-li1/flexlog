@@ -16,6 +16,7 @@ export default function ThreedotMenu({ workoutId, setWorkouts, units }) {
       );
       const defaultData = {
         name: await res.data.name,
+        eIds: await res.data.exercises.map((e) => e._id),
         exercises: await res.data.exercises.map((e) => ({
           name: e.name,
           sets: e.sets,
@@ -59,6 +60,7 @@ export default function ThreedotMenu({ workoutId, setWorkouts, units }) {
     <MenuContainer>
       {error}
       <UpsertWorkoutModal
+        key={workoutId}
         isVisible={addVisible}
         setVisible={setAddVisible}
         setWorkouts={setWorkouts}

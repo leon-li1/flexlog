@@ -57,6 +57,7 @@ export const ExerciseRow = ({
         <RepContainer focused={focused}>
           {exercise.reps.map((_, repIdx) => (
             <SetRow
+              key={repIdx}
               exercise={exercise}
               repIdx={repIdx}
               rep={exercise.reps[repIdx]}

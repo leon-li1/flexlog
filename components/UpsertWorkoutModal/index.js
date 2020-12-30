@@ -17,6 +17,7 @@ const UpsertWorkoutModal = ({
 }) => {
   const defaultData = {
     name: "",
+    eIds: [],
     exercises: [
       {
         name: "",
@@ -27,9 +28,10 @@ const UpsertWorkoutModal = ({
     ],
   };
 
-  const [data, setData] = useState(false || defaultData); // TODO
+  const [data, setData] = useState(defaultData);
   const [focusedIdx, setFocusedIdx] = useState(null);
   const [error, trigger] = useErrorMsg();
+  const firstWord = isUpdate ? "Update" : "Add";
 
   useEffect(() => {
     const init = async () => setData((await initialData) || defaultData);
@@ -58,29 +60,44 @@ const UpsertWorkoutModal = ({
       eReps: data.exercises.map((e) => e.reps),
     };
 
-    try {
-      const res = await (isUpdate
-        ? axios.patch(
-            `http://localhost:8000/workouts/update/${workoutId}`,
-            req,
-            { withCredentials: true }
-          )
-        : axios.post("http://localhost:8000/workouts/add", req, {
-            withCredentials: true,
-          }));
-      setWorkouts(res.data);
-      setData(defaultData);
-      setFocusedIdx(null);
-      setVisible(false);
-    } catch (err) {
-      trigger(err?.response?.data || err.toString());
+    if (isUpdate) {
+      req.existingExercises = (await initialData).eIds.map((e) => {
+        if (data.eIds.includes(e)) return e;
+      });
+      try {
+        const res = await axios.patch(
+          `http://localhost:8000/workouts/update/${workoutId}`,
+          req,
+          { withCredentials: true }
+        );
+        setWorkouts(res.data);
+        setData(defaultData);
+        setFocusedIdx(null);
+        setVisible(false);
+      } catch (err) {
+        trigger(err?.response?.data || err.toString());
+      }
+    } else {
+      try {
+        const res = await axios.post(
+          "http://localhost:8000/workouts/add",
+          req,
+          { withCredentials: true }
+        );
+        setWorkouts(res.data);
+        setData(defaultData);
+        setFocusedIdx(null);
+        setVisible(false);
+      } catch (err) {
+        trigger(err?.response?.data || err.toString());
+      }
     }
   };
 
   return (
     <PopupModal isVisible={isVisible} setVisible={setVisible}>
       {error}
-      <h2>Add a workout</h2>
+      <h2>{firstWord} a workout</h2>
       <HeaderContainer>
         <NameInput
           value={data.name}
