@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useState, useEffect } from "react";
 
 export default function UnitsSwitch({ units, setUnits }) {
-  const [toggle, setToggle] = useState(true);
+  const [toggle, setToggle] = useState(units === "Metric" ? true : false);
 
   useEffect(() => {
     setUnits(toggle ? "Metric" : "Imperial");

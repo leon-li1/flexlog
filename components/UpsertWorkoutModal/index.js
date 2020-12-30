@@ -14,6 +14,7 @@ const UpsertWorkoutModal = ({
   initialData,
   isUpdate,
   workoutId,
+  setOpenMenu,
 }) => {
   const defaultData = {
     name: "",
@@ -50,7 +51,7 @@ const UpsertWorkoutModal = ({
     setData(newData);
   };
 
-  const addWorkout = async () => {
+  const submitWorkout = async () => {
     const req = {
       name: data.name,
       numExercises: data.exercises.length,
@@ -74,6 +75,7 @@ const UpsertWorkoutModal = ({
         setData(defaultData);
         setFocusedIdx(null);
         setVisible(false);
+        setOpenMenu(false);
       } catch (err) {
         trigger(err?.response?.data || err.toString());
       }
@@ -121,7 +123,7 @@ const UpsertWorkoutModal = ({
       ))}
       <ActionContainer>
         <ActionButton onClick={() => setVisible(false)}>Cancel</ActionButton>
-        <ActionButton onClick={addWorkout}>Add workout</ActionButton>
+        <ActionButton onClick={submitWorkout}>{firstWord} workout</ActionButton>
       </ActionContainer>
     </PopupModal>
   );

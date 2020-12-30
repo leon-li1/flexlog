@@ -16,6 +16,7 @@ export default function Workoutcard({
 
   return (
     <Card>
+      {console.log("rerender card")}
       <MyContainer2>
         <NameLabel>{name}</NameLabel>
         <StyledThreeDots openMenu={openMenu} setOpenMenu={setOpenMenu} />
@@ -26,6 +27,7 @@ export default function Workoutcard({
             workoutId={workoutId}
             setWorkouts={setWorkouts}
             units={units}
+            setOpenMenu={setOpenMenu}
           />
         )}
         {exercises.map((ex, idx) => (

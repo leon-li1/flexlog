@@ -4,7 +4,12 @@ import UpsertWorkoutModal from "../UpsertWorkoutModal";
 import { useState } from "react";
 import axios from "axios";
 
-export default function ThreedotMenu({ workoutId, setWorkouts, units }) {
+export default function ThreedotMenu({
+  workoutId,
+  setWorkouts,
+  units,
+  setOpenMenu,
+}) {
   const [error, trigger] = useErrorMsg();
   const [addVisible, setAddVisible] = useState(null);
 
@@ -36,6 +41,7 @@ export default function ThreedotMenu({ workoutId, setWorkouts, units }) {
         `http://localhost:8000/workouts/delete/${workoutId}`,
         { withCredentials: true }
       );
+      setOpenMenu(false);
       setWorkouts(res.data);
     } catch (err) {
       trigger(err?.response?.data || err.toString());
@@ -49,8 +55,8 @@ export default function ThreedotMenu({ workoutId, setWorkouts, units }) {
         {},
         { withCredentials: true }
       );
+      setOpenMenu(false);
       setWorkouts(res.data);
-      console.log(res.data.length);
     } catch (err) {
       trigger(err?.response?.data || err.toString());
     }
@@ -68,6 +74,7 @@ export default function ThreedotMenu({ workoutId, setWorkouts, units }) {
         initialData={getData()}
         isUpdate={true}
         workoutId={workoutId}
+        setOpenMenu={setOpenMenu}
       />
       <Option onClick={() => setAddVisible(true)}>Edit</Option>
       <Option onClick={handleDuplicate}>Duplicate</Option>
