@@ -3,9 +3,10 @@ import { ModalTitle } from "../LoginModal/Modal";
 import { useState, useRef } from "react";
 import UnitsSwitch from "./UnitsSwitch";
 import useErrorMsg from "../../hooks/useErrorMsg";
+import PopupModal from "../PopupModal";
 import axios from "axios";
 
-const SettingsPopup = ({ set, user, setUser }) => {
+const SettingsPopup = ({ set, user, setUser, isVisible, setVisible }) => {
   const inputName = useRef();
   const inputEmail = useRef();
   const inputPassword = useRef();
@@ -28,17 +29,18 @@ const SettingsPopup = ({ set, user, setUser }) => {
         { withCredentials: true }
       );
       setUser(res.data);
+      setVisible(false);
     } catch (err) {
       trigger(err?.response?.data || err.toString());
     }
   };
 
   return (
-    <Modal>
+    <PopupModal isVisible={isVisible} setVisible={setVisible}>
       {error}
       <ModalTitle>Settings</ModalTitle>
       <FieldContainer>
-        <label htmlFor="name">Change name</label>
+        <label for="name">Change name</label>
         <Input id="name" type="text" placeholder={user.name} ref={inputName} />
       </FieldContainer>
       <FieldContainer>
@@ -72,25 +74,12 @@ const SettingsPopup = ({ set, user, setUser }) => {
         <UnitsSwitch units={user.units} setUnits={setUnits} />
       </FieldContainer>
       <BtnContainer>
-        <Button onClick={() => set("")}>Cancel</Button>
-        <Button onClick={() => confirmChanges()}>Confirm changes</Button>
+        <Button onClick={() => setVisible(false)}>Cancel</Button>
+        <Button onClick={confirmChanges}>Confirm changes</Button>
       </BtnContainer>
-    </Modal>
+    </PopupModal>
   );
 };
-
-const Modal = styled.div`
-  width: 60vw;
-  display: flex;
-  position: absolute;
-  flex-direction: column;
-  padding: 1.5em 2em;
-  left: 20%;
-  top: 25%;
-  border-radius: 36px;
-  box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.5);
-  background: linear-gradient(282.47deg, #0c3360 0.56%, #234771 86.94%), #01c1cf;
-`;
 
 const FieldContainer = styled.div`
   display: flex;

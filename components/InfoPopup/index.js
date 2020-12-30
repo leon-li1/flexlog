@@ -1,9 +1,10 @@
 import styled from "styled-components";
 import { ModalTitle } from "../LoginModal/Modal";
+import PopupModal from "../PopupModal";
 
-const InfoPopup = ({ set }) => {
+const InfoPopup = ({ set, isVisible, setVisible }) => {
   return (
-    <Modal>
+    <PopupModal isVisible={isVisible} setVisible={setVisible}>
       <ModalTitle>Learn more</ModalTitle>
       <FieldContainer>
         <Input>
@@ -13,15 +14,18 @@ const InfoPopup = ({ set }) => {
           milestone.
           
           How do I get Flexpoints?
-          + 1 point on new login (once per
-          day) + 5 points on workout share (once per day) + 50 points on getting
-          a star + 50 points on new account creation + 50 points on logging your
-          first workout + 20 points for reaching a new personal record on an
-          exercise (record for each exercise = weight × reps)`}
+          + 1 point on new login (once per day)
+          + 5 points on new workout log creation 
+          + 10 points on workout share (once per day)
+          + 20 points for reaching a new personal record on an
+          exercise (record for each exercise = weight × reps)
+          + 50 points on getting a star 
+          + 50 points on new account creation
+          + 50 points on logging your first workout`}
         </Input>
       </FieldContainer>
-      <Button onClick={() => set("")}>Got it!</Button>
-    </Modal>
+      <Button onClick={() => setVisible(false)}>Got it!</Button>
+    </PopupModal>
   );
 };
 

@@ -5,7 +5,7 @@ import Gear from "./Gear";
 import Info from "./Info";
 import Link from "next/link";
 
-export default function Options({ set, setUser }) {
+export default function Options({ set, setVisible }) {
   return (
     <OptionContainer>
       <Link href="/workouts">
@@ -20,11 +20,21 @@ export default function Options({ set, setUser }) {
         <Text>My Stats</Text>
         {/* </Link> */}
       </Option>
-      <Option onClick={() => set("Settings")}>
+      <Option
+        onClick={() => {
+          setVisible(true);
+          set("Settings");
+        }}
+      >
         <Gear />
         <Text>Settings</Text>
       </Option>
-      <Option onClick={() => set("Info")}>
+      <Option
+        onClick={() => {
+          setVisible(true);
+          set("Info");
+        }}
+      >
         <Info />
         <Text>Learn More</Text>
       </Option>
@@ -45,6 +55,8 @@ const Option = styled.div`
   padding: 0.4em 0em 0.4em 1.2em;
   cursor: pointer;
 `;
+
+const OptionPopup = styled(Option);
 
 const Text = styled.p`
   padding: 0.4em;

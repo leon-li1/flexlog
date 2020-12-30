@@ -65,7 +65,7 @@ const BackgroundCover = styled.div`
 
 const Container = styled.div`
   z-index: 2;
-  width: 648px;
+  width: 60vw;
   display: flex;
   flex-direction: column;
   padding: 1.5em 2em;

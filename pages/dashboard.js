@@ -14,6 +14,7 @@ import Loader from "../components/Loader";
 
 export default function Dashboard() {
   const [state, setState] = useState("");
+  const [popupVisible, setPopupVisible] = useState(false);
   const [loading, error, user, setUser] = useLogin();
   const router = useRouter();
 
@@ -27,7 +28,7 @@ export default function Dashboard() {
         <Container>
           <WelcomeCard userName={user.name} stars={user.stars} />
           <PointsCard points={user.points} />
-          <Options set={setState} />
+          <Options set={setState} setVisible={setPopupVisible} />
         </Container>
         <Container>
           <GraphCard />
@@ -37,9 +38,21 @@ export default function Dashboard() {
       {
         {
           Settings: (
-            <SettingsPopup set={setState} user={user} setUser={setUser} />
+            <SettingsPopup
+              set={setState}
+              user={user}
+              setUser={setUser}
+              isVisible={popupVisible}
+              setVisible={setPopupVisible}
+            />
           ),
-          Info: <InfoPopup set={setState} />,
+          Info: (
+            <InfoPopup
+              set={setState}
+              isVisible={popupVisible}
+              setVisible={setPopupVisible}
+            />
+          ),
         }[state]
       }
     </PageContainer>
