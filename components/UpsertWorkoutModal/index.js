@@ -26,21 +26,27 @@ const UpsertWorkoutModal = ({
       },
     ],
   };
+
   const [data, setData] = useState(false || defaultData); // TODO
   const [focusedIdx, setFocusedIdx] = useState(null);
   const [error, trigger] = useErrorMsg();
 
-  function addExercise() {
+  useEffect(() => {
+    const init = async () => setData((await initialData) || defaultData);
+    init();
+  }, []);
+
+  const addExercise = () => {
     const newData = { ...data };
     newData.exercises.push({ name: "", sets: 1, weights: [0], reps: [0] });
     setData(newData);
-  }
+  };
 
-  function removeExercise() {
+  const removeExercise = () => {
     const newData = { ...data };
     newData.exercises.pop();
     setData(newData);
-  }
+  };
 
   const addWorkout = async () => {
     const req = {

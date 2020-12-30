@@ -15,8 +15,8 @@ export default function ThreedotMenu({ workoutId, setWorkouts, units }) {
         { withCredentials: true }
       );
       const defaultData = {
-        name: res.data.name,
-        exercises: res.data.exercises.map((e) => ({
+        name: await res.data.name,
+        exercises: await res.data.exercises.map((e) => ({
           name: e.name,
           sets: e.sets,
           weights: e.weights,
