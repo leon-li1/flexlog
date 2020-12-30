@@ -5,19 +5,6 @@ import Input from "../Input";
 import { ExerciseRow } from "./ExerciseRow";
 import axios from "axios";
 import useErrorMsg from "../../hooks/useErrorMsg";
-// import { useRouter } from "next/router";
-
-const defaultData = {
-  name: "",
-  exercises: [
-    {
-      name: "",
-      sets: 1,
-      weights: [0],
-      reps: [0],
-    },
-  ],
-};
 
 const UpsertWorkoutModal = ({
   isVisible,
@@ -25,6 +12,17 @@ const UpsertWorkoutModal = ({
   setWorkouts,
   initialData,
 }) => {
+  const defaultData = {
+    name: "",
+    exercises: [
+      {
+        name: "",
+        sets: 1,
+        weights: [0],
+        reps: [0],
+      },
+    ],
+  };
   const [data, setData] = useState(defaultData);
   const [focusedIdx, setFocusedIdx] = useState(null);
   const [error, trigger] = useErrorMsg();
@@ -39,7 +37,6 @@ const UpsertWorkoutModal = ({
     newData.exercises.pop();
     setData(newData);
   }
-  // const router = useRouter();
 
   const addWorkout = async () => {
     const req = {
@@ -55,11 +52,10 @@ const UpsertWorkoutModal = ({
       const res = await axios.post("http://localhost:8000/workouts/add", req, {
         withCredentials: true,
       });
-      // router.push("/workouts");
       setWorkouts(res.data);
       setData(defaultData);
+      setFocusedIdx(null);
       setVisible(false);
-      console.log(data);
     } catch (err) {
       trigger(err?.response?.data || err.toString());
     }
@@ -68,7 +64,6 @@ const UpsertWorkoutModal = ({
   return (
     <PopupModal isVisible={isVisible} setVisible={setVisible}>
       {error}
-      {console.log(data)}
       <h2>Add a workout</h2>
       <HeaderContainer>
         <NameInput
