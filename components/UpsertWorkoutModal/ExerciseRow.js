@@ -7,6 +7,7 @@ export const ExerciseRow = ({
   idx,
   focused = true,
   onFocus = () => null,
+  units,
 }) => {
   const setExercise = (updatedFields) =>
     setData((data) => {
@@ -61,6 +62,7 @@ export const ExerciseRow = ({
               rep={exercise.reps[repIdx]}
               weight={exercise.weights[repIdx]}
               setExercise={setExercise}
+              units={units}
             />
           ))}
         </RepContainer>

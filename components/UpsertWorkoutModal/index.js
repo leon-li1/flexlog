@@ -11,6 +11,7 @@ const UpsertWorkoutModal = ({
   setVisible,
   setWorkouts,
   initialData,
+  units,
 }) => {
   const defaultData = {
     name: "",
@@ -83,6 +84,7 @@ const UpsertWorkoutModal = ({
           setData={setData}
           focused={idx === focusedIdx}
           onFocus={() => setFocusedIdx(idx)}
+          units={units}
         />
       ))}
       <ActionContainer>

@@ -1,6 +1,13 @@
 import styled from "styled-components";
 
-export default function SetRow({ exercise, repIdx, rep, weight, setExercise }) {
+export default function SetRow({
+  exercise,
+  repIdx,
+  rep,
+  weight,
+  setExercise,
+  units,
+}) {
   const setRep = (newVal) => {
     if (newVal < 0) return;
     const newData = { ...exercise };
@@ -18,7 +25,7 @@ export default function SetRow({ exercise, repIdx, rep, weight, setExercise }) {
       <NumberInput value={rep} onChange={(e) => setRep(e.target.value)} />
       ×
       <NumberInput value={weight} onChange={(e) => setWeight(e.target.value)} />
-      lbs
+      {units}
     </RepRow>
   );
 }

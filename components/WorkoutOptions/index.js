@@ -4,7 +4,7 @@ import Plus from "./Plus";
 import UpsertWorkoutModal from "../UpsertWorkoutModal";
 import { useState } from "react";
 
-export default function WorkoutOptions({ setWorkouts }) {
+export default function WorkoutOptions({ setWorkouts, units }) {
   const [addVisible, setAddVisible] = useState(null);
 
   return (
@@ -13,6 +13,7 @@ export default function WorkoutOptions({ setWorkouts }) {
         isVisible={addVisible}
         setVisible={setAddVisible}
         setWorkouts={setWorkouts}
+        units={units}
       />
       <Option onClick={() => setAddVisible(true)}>
         <Plus />

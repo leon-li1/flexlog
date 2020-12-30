@@ -11,7 +11,7 @@ import Loader from "../components/Loader";
 
 export default function Dashboard() {
   const [workouts, setWorkouts] = useState([]);
-  const [loading, error] = useLogin();
+  const [loading, error, user] = useLogin();
   const router = useRouter();
 
   useEffect(() => {
@@ -36,7 +36,10 @@ export default function Dashboard() {
             <NameLabel>MY WORKOUTS</NameLabel>
             <WorkoutLabel>{workouts.length} Workouts</WorkoutLabel>
           </LabelContainer>
-          <WorkoutOptions setWorkouts={setWorkouts} />
+          <WorkoutOptions
+            setWorkouts={setWorkouts}
+            units={user.units === "Metric" ? "lbs" : "kg"}
+          />
         </Container>
 
         {workouts.map((workout, idx) => {
