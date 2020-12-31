@@ -1,13 +1,12 @@
-import styled from "styled-components";
 import { Button } from "../LoginModal/Button";
 import { Input } from "../LoginModal/Input";
 import { Modal, ModalTitle } from "../LoginModal/Modal";
-import { useState, useRef } from "react";
+import { useRef } from "react";
 import axios from "axios";
-import useErrorMsg from '../../hooks/useErrorMsg';
-import { useRouter } from 'next/router';
+import useErrorMsg from "../../hooks/useErrorMsg";
+import { useRouter } from "next/router";
 
-const CreateAccountModal = ({ setState }) => {
+const CreateAccountModal = () => {
   const inputName = useRef();
   const inputEmail = useRef();
   const inputPassword = useRef();
@@ -24,10 +23,15 @@ const CreateAccountModal = ({ setState }) => {
     };
 
     try {
-      const res = await axios.post("http://localhost:8000/api/users/add", req);
-      // TODO: this should just log them in wtf
-      // router.push('/dashboard')
-      setState("Login");
+      await axios.post("http://localhost:8000/api/users/add", req);
+      await axios.post(
+        "http://localhost:8000/api/login",
+        { email: req.email, password: req.password },
+        {
+          withCredentials: true,
+        }
+      );
+      router.push("/dashboard");
     } catch (err) {
       switch (err.response.data) {
         case '"name" is not allowed to be empty':

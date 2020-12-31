@@ -17,7 +17,7 @@ export default function Home() {
         {
           {
             Login: <LoginModal setState={setState} />,
-            CreateAccount: <CreateAccountModal setState={setState} />,
+            CreateAccount: <CreateAccountModal />,
             Code: <ResetPasswordModal setState={setState} />,
           }[state]
         }
