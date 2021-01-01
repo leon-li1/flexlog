@@ -16,9 +16,12 @@ export default function Dashboard() {
 
   useEffect(() => {
     const getWorkouts = async () => {
-      const res = await axios.get(`${process.env.SERVER_URL}/workouts/all`, {
-        withCredentials: true,
-      });
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/workouts/all`,
+        {
+          withCredentials: true,
+        }
+      );
       setWorkouts(res.data);
     };
     getWorkouts();

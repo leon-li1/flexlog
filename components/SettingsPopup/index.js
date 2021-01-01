@@ -25,7 +25,7 @@ const SettingsPopup = ({ set, user, setUser, isVisible, setVisible }) => {
     };
     try {
       const res = await axios.patch(
-        `${process.env.SERVER_URL}/api/users/update`,
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/api/users/update`,
         text,
         { withCredentials: true }
       );

@@ -19,7 +19,7 @@ export default function LoginModal({ setState }) {
         email: inputEmail.current.value,
         password: inputPassword.current.value,
       };
-      await axios.post(`${process.env.SERVER_URL}/api/login`, req, {
+      await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/login`, req, {
         withCredentials: true,
       });
       router.push("/dashboard");

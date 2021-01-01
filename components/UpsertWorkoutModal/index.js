@@ -67,7 +67,7 @@ const UpsertWorkoutModal = ({
       });
       try {
         const res = await axios.patch(
-          `${process.env.SERVER_URL}/workouts/update/${workoutId}`,
+          `${process.env.NEXT_PUBLIC_SERVER_URL}/workouts/update/${workoutId}`,
           req,
           { withCredentials: true }
         );
@@ -82,7 +82,7 @@ const UpsertWorkoutModal = ({
     } else {
       try {
         const res = await axios.post(
-          `${process.env.SERVER_URL}/workouts/add`,
+          `${process.env.NEXT_PUBLIC_SERVER_URL}/workouts/add`,
           req,
           { withCredentials: true }
         );

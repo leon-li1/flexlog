@@ -13,11 +13,15 @@ const CreateAccountModal = () => {
 
   const signUp = async () => {
     try {
-      await axios.post(`${process.env.SERVER_URL}/api/users/add`, data, {
-        withCredentials: true,
-      });
       await axios.post(
-        `${process.env.SERVER_URL}/api/login`,
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/api/users/add`,
+        data,
+        {
+          withCredentials: true,
+        }
+      );
+      await axios.post(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/api/login`,
         { email: data.email, password: data.password },
         { withCredentials: true }
       );

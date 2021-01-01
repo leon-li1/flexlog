@@ -8,7 +8,7 @@ export default function Header({ isLoggedout }) {
   const router = useRouter();
 
   const logout = async () => {
-    await axios.get(`${process.env.SERVER_URL}/api/logout`, {
+    await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/logout`, {
       withCredentials: true,
     });
     router.push("/");

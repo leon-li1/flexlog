@@ -7,9 +7,10 @@ export default function useLogin() {
   useEffect(() => {
     const getUser = async () => {
       try {
-        const res = await axios.get(`${process.env.SERVER_URL}/api/users/me`, {
-          withCredentials: true,
-        });
+        const res = await axios.get(
+          `${process.env.NEXT_PUBLIC_SERVER_URL}/api/users/me`,
+          { withCredentials: true }
+        );
         setState([false, null, res.data]);
       } catch (err) {
         setState([false, err.toString(), null]);
