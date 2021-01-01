@@ -25,7 +25,7 @@ export default function UnitsSwitch({ units, setUnits }) {
 const UnitsContainer = styled.div`
   display: flex;
   flex-direction: row;
-  width: 65%;
+  width: 70%;
   justify-content: space-between;
   margin-left: auto;
 `;
