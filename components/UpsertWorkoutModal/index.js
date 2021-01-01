@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import PopupModal from "../PopupModal";
-import Input from "../Input";
+import { Input } from "../Input";
 import { ExerciseRow } from "./ExerciseRow";
 import axios from "axios";
 import useErrorMsg from "../../hooks/useErrorMsg";
@@ -67,7 +67,7 @@ const UpsertWorkoutModal = ({
       });
       try {
         const res = await axios.patch(
-          `http://localhost:8000/workouts/update/${workoutId}`,
+          `${process.env.SERVER_URL}/workouts/update/${workoutId}`,
           req,
           { withCredentials: true }
         );
@@ -82,7 +82,7 @@ const UpsertWorkoutModal = ({
     } else {
       try {
         const res = await axios.post(
-          "http://localhost:8000/workouts/add",
+          `${process.env.SERVER_URL}/workouts/add`,
           req,
           { withCredentials: true }
         );
@@ -139,7 +139,7 @@ const ActionButton = styled.button`
   background-color: #fff;
   color: #000;
   border-radius: 17px;
-  margin: 0 3px;
+  margin: 0 0.5em;
   border: none;
   cursor: pointer;
   font-weight: 700;

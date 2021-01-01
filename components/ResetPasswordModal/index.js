@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Button } from "../LoginModal/Button";
-import { Input } from "../LoginModal/Input";
+import { Input } from "../Input";
 import { Modal, ModalTitle } from "../LoginModal/Modal";
 
 export default function ResetPasswordModal() {

@@ -37,6 +37,17 @@ const GlobalStyle = createGlobalStyle`
   -webkit-border-radius: 100px;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active  {
+    -webkit-box-shadow: 0 0 0 30px #00244e inset !important;
+}
+
+input:-webkit-autofill {
+    -webkit-text-fill-color: white !important;
+}
+
 /* ::-webkit-scrollbar-thumb:vertical {
   background: rgba(0, 0, 0, 0.5);
   -webkit-border-radius: 100px;

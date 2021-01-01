@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { ModalTitle } from "../LoginModal/Modal";
 import { useState, useRef } from "react";
+import { Input } from "../Input";
 import UnitsSwitch from "./UnitsSwitch";
 import useErrorMsg from "../../hooks/useErrorMsg";
 import PopupModal from "../PopupModal";
@@ -24,7 +25,7 @@ const SettingsPopup = ({ set, user, setUser, isVisible, setVisible }) => {
     };
     try {
       const res = await axios.patch(
-        "http://localhost:8000/api/users/update",
+        `${process.env.SERVER_URL}/api/users/update`,
         text,
         { withCredentials: true }
       );
@@ -41,11 +42,16 @@ const SettingsPopup = ({ set, user, setUser, isVisible, setVisible }) => {
       <ModalTitle>Settings</ModalTitle>
       <FieldContainer>
         <label for="name">Change name</label>
-        <Input id="name" type="text" placeholder={user.name} ref={inputName} />
+        <InputAligned
+          id="name"
+          type="text"
+          placeholder={user.name}
+          ref={inputName}
+        />
       </FieldContainer>
       <FieldContainer>
         <label for="email">Change email</label>
-        <Input
+        <InputAligned
           id="email"
           type="email"
           placeholder={user.email}
@@ -54,7 +60,7 @@ const SettingsPopup = ({ set, user, setUser, isVisible, setVisible }) => {
       </FieldContainer>
       <FieldContainer>
         <label for="password">Change password</label>
-        <Input
+        <InputAligned
           id="password"
           type="password"
           placeholder="Password..."
@@ -63,7 +69,7 @@ const SettingsPopup = ({ set, user, setUser, isVisible, setVisible }) => {
       </FieldContainer>
       <FieldContainer>
         <label for="passwordConfirm">Confirm password</label>
-        <Input
+        <InputAligned
           id="passwordConfirm"
           type="password"
           placeholder="Confirm password..."
@@ -92,23 +98,9 @@ const BtnContainer = styled.div`
   margin-left: auto;
 `;
 
-const Input = styled.input`
-  display: block;
-  background-color: ${(p) => p.theme.colors.background3};
-  width: 70%;
-  border-radius: 17px;
-  font-size: 1em;
-  margin: 0.5em;
+const InputAligned = styled(Input)`
   margin-left: auto;
-  padding: 0.3em 0.8em;
-  color: white;
-  border: none;
-  ::placeholder {
-    color: white;
-  }
-  :focus {
-    outline: none;
-  }
+  width: 65%;
 `;
 
 const Button = styled.button`

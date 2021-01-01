@@ -16,8 +16,8 @@ const InfoPopup = ({ set, isVisible, setVisible }) => {
           <br />
           <br />
           {`How do I get Flexpoints?`}
-          <br />
-          {`+ 1 point on new login (once per day)`}
+          {/* <br /> */}
+          {/* {`+ 1 point on new login (once per day)`} */}
           <br />
           {`+ 5 points on new workout log creation `}
           <br />

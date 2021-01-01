@@ -1,35 +1,23 @@
 import { Button } from "../LoginModal/Button";
-import { Input } from "../LoginModal/Input";
+import { Input } from "../Input";
 import { Modal, ModalTitle } from "../LoginModal/Modal";
-import { useRef } from "react";
-import axios from "axios";
-import useErrorMsg from "../../hooks/useErrorMsg";
+import { useState } from "react";
 import { useRouter } from "next/router";
+import useErrorMsg from "../../hooks/useErrorMsg";
+import axios from "axios";
 
 const CreateAccountModal = () => {
-  const inputName = useRef();
-  const inputEmail = useRef();
-  const inputPassword = useRef();
-  const inputConfirmPassword = useRef();
+  const [data, setData] = useState({});
   const [error, triggerErr] = useErrorMsg();
   const router = useRouter();
 
   const signUp = async () => {
-    const req = {
-      name: inputName.current.value,
-      email: inputEmail.current.value,
-      password: inputPassword.current.value,
-      passwordConfirm: inputConfirmPassword.current.value,
-    };
-
     try {
-      await axios.post("http://localhost:8000/api/users/add", req);
+      await axios.post(`${process.env.SERVER_URL}/api/users/add`, data);
       await axios.post(
-        "http://localhost:8000/api/login",
-        { email: req.email, password: req.password },
-        {
-          withCredentials: true,
-        }
+        `${process.env.SERVER_URL}/api/login`,
+        { email: data.email, password: data.password },
+        { withCredentials: true }
       );
       router.push("/dashboard");
     } catch (err) {
@@ -54,13 +42,29 @@ const CreateAccountModal = () => {
     <Modal>
       {error}
       <ModalTitle>Create a new account</ModalTitle>
-      <Input type="text" placeholder="Name..." ref={inputName} />
-      <Input type="email" placeholder="Email..." ref={inputEmail} />
-      <Input type="password" placeholder="Password..." ref={inputPassword} />
+      <Input
+        type="text"
+        placeholder="Name..."
+        value={data.name}
+        onChange={(e) => setData({ ...data, name: e.target.value })}
+      />
+      <Input
+        type="email"
+        placeholder="Email..."
+        value={data.email}
+        onChange={(e) => setData({ ...data, email: e.target.value })}
+      />
+      <Input
+        type="password"
+        placeholder="Password..."
+        value={data.password}
+        onChange={(e) => setData({ ...data, password: e.target.value })}
+      />
       <Input
         type="password"
         placeholder="Confirm password..."
-        ref={inputConfirmPassword}
+        value={data.passwordConfirm}
+        onChange={(e) => setData({ ...data, passwordConfirm: e.target.value })}
       />
       <Button onClick={async () => await signUp()}>Sign Up</Button>
     </Modal>

@@ -16,7 +16,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     const getWorkouts = async () => {
-      const res = await axios.get("http://localhost:8000/workouts/all", {
+      const res = await axios.get(`${process.env.SERVER_URL}/workouts/all`, {
         withCredentials: true,
       });
       setWorkouts(res.data);
@@ -26,7 +26,7 @@ export default function Dashboard() {
 
   if (error) router.push("/");
   if (loading || error) return <Loader />;
-  const units_ = user.units === "Metric" ? "lbs" : "kg";
+  const units_ = user.units === "Imperial" ? "lbs" : "kg";
 
   return (
     <PageContainer>
@@ -48,7 +48,6 @@ export default function Dashboard() {
                 <WorkoutCard
                   key={workout._id}
                   workoutId={workout._id}
-                  // workouts={workouts}
                   setWorkouts={setWorkouts}
                   name={workout.name}
                   exercises={workout.exercises}
@@ -57,7 +56,6 @@ export default function Dashboard() {
                 <WorkoutCard
                   key={workouts[idx + 1]._id}
                   workoutId={workouts[idx + 1]._id}
-                  // workouts={workouts}
                   setWorkouts={setWorkouts}
                   name={workouts[idx + 1].name}
                   exercises={workouts[idx + 1].exercises}
@@ -70,7 +68,6 @@ export default function Dashboard() {
               <WorkoutCard
                 key={workout._id}
                 workoutId={workout._id}
-                // workouts={workouts}
                 setWorkouts={setWorkouts}
                 name={workout.name}
                 exercises={workout.exercises}

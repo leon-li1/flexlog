@@ -7,7 +7,7 @@ export default function useLogin() {
   useEffect(() => {
     const getUser = async () => {
       try {
-        const res = await axios.get("http://localhost:8000/api/users/me", {
+        const res = await axios.get(`${process.env.SERVER_URL}/api/users/me`, {
           withCredentials: true,
         });
         setState([false, null, res.data]);

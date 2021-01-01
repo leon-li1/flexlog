@@ -16,7 +16,7 @@ export default function ThreedotMenu({
   const getData = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:8000/workouts/${workoutId}`,
+        `${process.env.SERVER_URL}/workouts/${workoutId}`,
         { withCredentials: true }
       );
       const defaultData = {
@@ -38,7 +38,7 @@ export default function ThreedotMenu({
   const handleDelete = async () => {
     try {
       const res = await axios.delete(
-        `http://localhost:8000/workouts/delete/${workoutId}`,
+        `${process.env.SERVER_URL}/workouts/delete/${workoutId}`,
         { withCredentials: true }
       );
       setOpenMenu(false);
@@ -51,7 +51,7 @@ export default function ThreedotMenu({
   const handleDuplicate = async () => {
     try {
       const res = await axios.post(
-        `http://localhost:8000/workouts/duplicate/${workoutId}`,
+        `${process.env.SERVER_URL}/workouts/duplicate/${workoutId}`,
         {},
         { withCredentials: true }
       );

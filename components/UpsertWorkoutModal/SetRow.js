@@ -22,10 +22,10 @@ export default function SetRow({
   };
   return (
     <RepRow key={repIdx}>
-      <NumberInput value={rep} onChange={(e) => setRep(e.target.value)} />
-      ×
       <NumberInput value={weight} onChange={(e) => setWeight(e.target.value)} />
       {units}
+      <NumberInput value={rep} onChange={(e) => setRep(e.target.value)} />
+      Reps
     </RepRow>
   );
 }
@@ -34,7 +34,9 @@ const RepRow = styled.div`
   width: 70%;
   background-color: #0a2c56;
   border-radius: 17px;
-  padding: 0 1em;
+  display: flex;
+  justify-content: space-between;
+  padding: 0em 2.6em;
   font-size: 0.6em;
   margin: 0.5em 1em;
 `;
@@ -46,6 +48,5 @@ const NumberInput = styled.input.attrs({
   outline: none;
   border: none;
   text-align: center;
-  display: inline;
-  width: 2.5em;
+  width: 4em;
 `;
