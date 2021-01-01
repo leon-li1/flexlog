@@ -11,6 +11,7 @@ export default function Home() {
 
   return (
     <PageContainer>
+      {console.log(process.env.SERVER_URL)}
       <Header isLoggedout={true} />
       <MainContainer>
         <Title>You don't improve what you don't track...</Title>
