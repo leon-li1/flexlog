@@ -7,3 +7,5 @@ Check it out on Vercel [here](https://flexlog.vercel.app)
 ![Login page](screenshots/flexlog1.png)
 ![Dashboard page](screenshots/flexlog2.png)
 ![Workouts page](screenshots/flexlog3.png)
+
+Note that you may need to try to login a few times if there is a network error as the database/cluster may be asleep.
